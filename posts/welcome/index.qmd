@@ -2,7 +2,7 @@
 title: "Welcome To My Blog"
 author: "Paul Ovnik"
 date: "9/2/2025"
-categories: [welcome, about me, about this blog]
+categories: [welcome, aboutme, aboutthisblog]
 image: "fantasyFootball.png"
 ---
 
