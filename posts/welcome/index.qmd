@@ -1,50 +1,21 @@
 ---
 title: "Welcome To My Blog"
-author: "Insert D. Name"
+author: "Paul Ovnik"
 date: "9/2/2025"
-categories: [welcome, news]
-image: "thumbnail.jpg"
+categories: [welcome, about me, about this blog]
+image: "fantasyFootball.png"
 ---
 
 # Welcome to my Blog! {#sec-welcome}
 
-Welcome to my blog entitled, "INSERT TITLE HERE".
-This is my first blog post.
+Welcome to my blog entitled, "Paul's First Fantasy Football Blog".
+This is my first blog post. 
 
-# Instructions {#sec-instructions}
+# About Me {#sec-about me}
 
-In this assignment, you will be creating your "Welcome to my Blog" post by editing the contents of this document.
-This document is written in Quarto.
-Here are the course's [Quarto instructions](https://isaactpetersen.github.io/QuartoBlogFantasyFootball/posts/quarto-instructions/).
-However, for this post, you will not need to create a new folder/post from a template (which you will do for future posts)—in this assignment, you will merely edit and re-post this current post.
+Hello readers, my name is Paul! I'm from La Grange, IL studying Psychology at the University of Iowa! In my free time, I love playing golf, hanging out with friends, and attending Chicago Cubs games! My favorite football team is the Chicago Bears and I've been playing fantasy football since about seventh grade. I can't wait to write more about statistics relating to fantasy football to help you and me draft better teams and win more championships!
 
-To follow the instructions (below), you must first create a new GitHub repository using the "QuartoBlogFantasyFootball" repository as a template (per the instructions [here](https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook/getting-started.html#sec-initialSetup)).
-Then, you will edit the `index.qmd` file associated with this post in the following location: `./posts/welcome/index.qmd`.
-Edit the `index.qmd` file according to the instructions below:
+# About This Blog {#sec-about this blog}
 
-- In the header (above; currently `author: "Insert D. Name"`), change the author name to your full name and change the date (currently `date: "9/2/2025"`).
-- Change the post image.
-To do this, you'll need to add the image file to the same folder as this document and update the file name above (currently `image: "thumbnail.jpg"`).
-- Insert headers for the following sections (I aleady created a header for the first section for you):
-    - "Welcome to my Blog!"
-    - "About Me"
-    - "About This Blog"
-- Add the info described below to the relevant section:
-    - Insert a blog title.
-    - Introduce yourself and tell the readers about yourself (nothing you don't feel comfortable sharing).
-    - Say what your blog articles will be about (generally) and why you are excited to write about that.
-    - Say something about the unique perspective you will bring to writing about that topic.
-- Remove this "Instructions" section (and the notes below) when you post your article.
-- To post your article, follow the course's [Quarto instructions](https://isaactpetersen.github.io/QuartoBlogFantasyFootball/posts/quarto-instructions/) to first render it locally, and, if everything looks the way you want it to, push it to GitHub so the article goes live (assuming it renders successfully in GitHub Actions)!
-- If you have difficulty, consult the course's [Quarto instructions](https://isaactpetersen.github.io/QuartoBlogFantasyFootball/posts/quarto-instructions/).
-- When submitting, make sure to follow the assignment instructions and rubric on ICON, and to submit both (1) the URL to the live post and (2) a PDF of the post.
+Wiht my knowledge about fantasy football and knack for math, I feel like I can help readers understand the statistics behind some of the many factors in fantasy football to help you build a championship roster with precise statistical measurements and proper techniques to make sure that you are drafting and acquiring the right players! 
 
-- This is a **public** blog.
-The whole world can see it.
-This can increase the visibility of your work and profile.
-You can expect that anything you write online is **permanent**.
-My strong suggestion is: <u>Don't write anything that you wouldn't feel comfortable with your parents or (current or) future employer seeing.</u>
-- The writing should be your own!
-- For all graphics, you should either a) create them yourself or b) use only those graphics that you have the license to use.
-You can use graphics with a Creative Commons license as long as you follow the terms of the license (e.g., cite the original, indicate if you make any changes, etc).
-To find graphics that have a Creative Commons license, when using Google Image Search, select: "Tools" > "Usage Rights" > "Creative Commons Licenses".
