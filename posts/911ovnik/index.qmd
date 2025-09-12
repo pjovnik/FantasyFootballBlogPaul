@@ -1,95 +1,72 @@
 ---
-title: "Quarto Blog Post Template"
-author: "Insert Author's Name Here"
-date: "7/10/2024"
-categories: [template, fantasy football]
-image: "fantasyFootball.jpg"
+title: "My Team"
+author: "Paul Ovnik"
+date: "9/11/2025"
+categories: [team members, justification, team strengths, team weaknesses, team plan, prediction]
+image: "myteam.png"
 ---
 
-This is a template [Quarto](https://quarto.org) file for your blog posts.
-Note: The post image was obtained from [here](https://commons.wikimedia.org/wiki/File:Fantasy_Football_-1.jpg).
 
-# Preamble {#sec-preamble}
+# Team Members {#sec-teammembers}
 
-## Load Libraries {#sec-loadLibraries}
 
-```{r}
-#| message: false
-#| warning: false
 
-library("petersenlab") #located here: https://github.com/DevPsyLab/petersenlab
-```
+players <- data.frame(
+  ID = 1:14,
+  name = c(
+    "Joe Burrow",
+    "Trey McBride",
+    "Derrick Henry",
+    "Patrick Mahomes",
+    "Garrett Wilson",
+    "De'Von Achane",
+    "Drake London",
+    "Jaxon Smith-Njigba",
+    "Tyler Warren",
+    "TreyVeyon Henderson",
+    "Jonathan Taylor",
+    "Nico Collins",
+    "Brandon Aubrey",
+    "Steelers"
+  ),
+  position = c(
+    "QB",
+    "TE",
+    "RB",
+    "QB",
+    "WR",
+    "RB",
+    "WR",
+    "WR",
+    "TE",
+    "RB",
+    "RB",
+    "WR",
+    "K",
+    "D"
+  )
 
-# AI Disclosure {#sec-aiDisclosure}
 
-AI Disclosure: AI was used for [SPECIFY ONE OR MORE AMONG THE FOLLOWING]: Mentoring, Code, and Editing.
-(Or, "AI was not used.")
 
-Link to AI Transcript: [INSERT URL]
 
-# Abstract {#sec-abstract}
 
-The Abstract is be a brief summary of your article.
-It should briefly summarize the background, method, results, discussion, and conclusion.
-The slashes in the Abstract template below make a new line (without creating a new paragraph).
+# Justification {#sec-justification}
 
-**Background:** INSERT.\
-**Method:** INSERT.\
-**Results:** INSERT.\
-**Discussion:** INSERT.
+I decided to draft with an RB-heavy approach, drafting Derrick Henry and De'Von Achane early into my draft. I also loaded up with wide receivers who are young but have been stellar and proven early into their careers, such as Garrett Wilson, Jaxon Smith-Njigba, and Drake London. I had the opportunity to draft Ja'Marr Chase, so I decided to pair him with his LSU teammate Joe Burrow. I also decided to draft some highly-regarded rookies, Tyler Warren and TreyVeyon Henderson who have high floors in PPR Fantasy. Rounding out, Patrick Mahomes is an NFL MVP and super bowl champion, as well as Trey McBride who has taken major strides and has established himself as a premier tight end in the NFL over the past couple years, despite a lack of touchdowns scored.
 
-# Background {#sec-background}
+# Team Strengths {#sec-teamstrengths}
+I think that the biggest strongsuits of my team include my wide recievers and running backs. Derrick Henry has finished as a top 10 fantasy running back in 7 of his last 8 fantasy seasons, as well as Jonathan Taylor having many seasons as a top 12 back, excluding unhealthier seasons. My wide reciever corps are fantasy stalwarts, as Ja'Marr Chase had an ADP of 1:1 this season due to monster fantasy performances throughout his short career so far. While Drake London, Garrett Wilson, and Jaxon Smith-Njigba have some questionable quarterbacks, their performaces have been nothing short of great, all averaging 100 recieving yards and over 1000 yards.
 
-This section should provide a background on the topic and why it is important.
+# Team Weaknesses {#sec-teamweaknesses}
 
-## The Present Study {#sec-presentStudy}
+While my team has some great position players, I feel as if my defense and Quarterbacks have some concerns. Mahomes and Burrow aren't exactly mobile quarterbacks, which matters heavily in fantasy leagues. The ability to get rushing yards and touchdowns from your quarterbacks can turn your team from a middle of the pack team to a true league powerhouse. While Burrow and Mahomes can sling the pill, they are not established rushing quarterbacks whatsoever. As for my defense, the Steelers are known historically for their great defenses, their performance against the New York Jets has me questioning their fantasy value.
 
-This section should describe your research question(s), hypotheses, and predictions, and should provide a justification for each hypothesis—ideally based on prior work, theory, etc.
-It should also describe why your study is innovative and important.
-The research question(s), hypotheses, and predictions should be clear.
-The hypothesis should provide a proposed explanation.
-The prediction(s) should be specific and testable.
+# Team Plan {#sec-teamplan}
 
-# Method {#sec-method}
+My current plan is to stick with my guys, as I feel like I can be a league winner with this roster. If need be, I will search the waivers for a more mobile quarterback and possibly a better defense.
 
-This section should describe how you tested your research question(s), including several subsections.
-A strong method section should allow any research to replicate your findings.
-That is, readers should know enough detail of how you conducted your study so that they can get the same answer.
-Traditionally, this section would include several subsections, including a) Participants, b) Procedure, c) Measures, and d) [Statistical Analysis](#sec-statisticalAnalysis).
-However, for this class and purpose, we will adapt the Method section to include the following subsections.
-
-## Data {#sec-data}
-
-This section describes the data you used—including the subset of players, positions, seasons, and indices you examined—how you obtained them, and any cleaning/processing/subsetting of the data you performed.
-
-## Statistical Analysis {#sec-statisticalAnalysis}
-
-This section describes the statistical approach you used, including the packages, key functions, and settings you used.
-
-# Results {#sec-results}
-
-This section presents the results of the statistical analysis, including output, figures, and basic description of the findings.
-The section should include `R` code/analyses to test the research question(s) and hypotheses, and it should include a written description of the findings all inline with the code and output.
-
-# Discussion {#sec-discussion}
-
-This section summarizes the findings and relates the findings back to background you provided at the beginning of the article.
-
-## Strengths and Limitations {#sec-strengthsLimitations}
-
-This section describes the strengths and limitations of the study.
-
-## Conclusion {#sec-conclusion}
-
-This sections provides an overall conclusion given the findings of the study, including take-away messages, implications, etc.
-
-# References {#sec-references}
-
-This section provides a list of references that you cited above.
-
-# Session Info {#sec-sessionInfo}
-
-This section provides your session info for reproducibility.
+# Prediction {#sec-prediction}
+While NFL Fantasy predicts me to have a 13-1 season, I think thats a little out of reach. I think that I have drafted a team with many strengths and very nit-picky weaknesses. I believe that this roster can win a fantasy championship, however will come with close games and losses throughout the season, as the league is very deep. I predict that I will finish with a 9-4 record.
 
 ```{r}
 sessionInfo()
