@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Paul Ovnik">
+<meta name="dcterms.date" content="2025-09-11">
 
-<title>ovnik911 – My Blog</title>
+<title>My Team – My Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -67,6 +104,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -114,14 +153,34 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">ovnik911</h1>
-                      </div>
+      <h1 class="title">My Team</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">team members</div>
+                <div class="quarto-category">justification</div>
+                <div class="quarto-category">team strengths</div>
+                <div class="quarto-category">team weaknesses</div>
+                <div class="quarto-category">team plan</div>
+                <div class="quarto-category">prediction</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Paul Ovnik </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 11, 2025</p>
+      </div>
+    </div>
     
       
     </div>
@@ -130,8 +189,19 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-teammembers" id="toc-sec-teammembers" class="nav-link active" data-scroll-target="#sec-teammembers"><span class="header-section-number">1</span> Team Members</a></li>
+  <li><a href="#sec-justification" id="toc-sec-justification" class="nav-link" data-scroll-target="#sec-justification"><span class="header-section-number">2</span> Justification</a></li>
+  <li><a href="#sec-teamstrengths" id="toc-sec-teamstrengths" class="nav-link" data-scroll-target="#sec-teamstrengths"><span class="header-section-number">3</span> Team Strengths</a></li>
+  <li><a href="#sec-teamweaknesses" id="toc-sec-teamweaknesses" class="nav-link" data-scroll-target="#sec-teamweaknesses"><span class="header-section-number">4</span> Team Weaknesses</a></li>
+  <li><a href="#sec-teamplan" id="toc-sec-teamplan" class="nav-link" data-scroll-target="#sec-teamplan"><span class="header-section-number">5</span> Team Plan</a></li>
+  <li><a href="#sec-prediction" id="toc-sec-prediction" class="nav-link" data-scroll-target="#sec-prediction"><span class="header-section-number">6</span> Prediction</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -140,8 +210,65 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="sec-teammembers" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Team Members</h1>
+<p>players &lt;- data.frame( ID = 1:14, name = c( “Joe Burrow”, “Trey McBride”, “Derrick Henry”, “Patrick Mahomes”, “Garrett Wilson”, “De’Von Achane”, “Drake London”, “Jaxon Smith-Njigba”, “Tyler Warren”, “TreyVeyon Henderson”, “Jonathan Taylor”, “Nico Collins”, “Brandon Aubrey”, “Steelers” ), position = c( “QB”, “TE”, “RB”, “QB”, “WR”, “RB”, “WR”, “WR”, “TE”, “RB”, “RB”, “WR”, “K”, “D” )</p>
+</section>
+<section id="sec-justification" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Justification</h1>
+<p>I decided to draft with an RB-heavy approach, drafting Derrick Henry and De’Von Achane early into my draft. I also loaded up with wide receivers who are young but have been stellar and proven early into their careers, such as Garrett Wilson, Jaxon Smith-Njigba, and Drake London. I had the opportunity to draft Ja’Marr Chase, so I decided to pair him with his LSU teammate Joe Burrow. I also decided to draft some highly-regarded rookies, Tyler Warren and TreyVeyon Henderson who have high floors in PPR Fantasy. Rounding out, Patrick Mahomes is an NFL MVP and super bowl champion, as well as Trey McBride who has taken major strides and has established himself as a premier tight end in the NFL over the past couple years, despite a lack of touchdowns scored.</p>
+</section>
+<section id="sec-teamstrengths" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Team Strengths</h1>
+<p>I think that the biggest strongsuits of my team include my wide recievers and running backs. Derrick Henry has finished as a top 10 fantasy running back in 7 of his last 8 fantasy seasons, as well as Jonathan Taylor having many seasons as a top 12 back, excluding unhealthier seasons. My wide reciever corps are fantasy stalwarts, as Ja’Marr Chase had an ADP of 1:1 this season due to monster fantasy performances throughout his short career so far. While Drake London, Garrett Wilson, and Jaxon Smith-Njigba have some questionable quarterbacks, their performaces have been nothing short of great, all averaging 100 recieving yards and over 1000 yards.</p>
+</section>
+<section id="sec-teamweaknesses" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Team Weaknesses</h1>
+<p>While my team has some great position players, I feel as if my defense and Quarterbacks have some concerns. Mahomes and Burrow aren’t exactly mobile quarterbacks, which matters heavily in fantasy leagues. The ability to get rushing yards and touchdowns from your quarterbacks can turn your team from a middle of the pack team to a true league powerhouse. While Burrow and Mahomes can sling the pill, they are not established rushing quarterbacks whatsoever. As for my defense, the Steelers are known historically for their great defenses, their performance against the New York Jets has me questioning their fantasy value.</p>
+</section>
+<section id="sec-teamplan" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Team Plan</h1>
+<p>My current plan is to stick with my guys, as I feel like I can be a league winner with this roster. If need be, I will search the waivers for a more mobile quarterback and possibly a better defense.</p>
+</section>
+<section id="sec-prediction" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Prediction</h1>
+<p>While NFL Fantasy predicts me to have a 13-1 season, I think thats a little out of reach. I think that I have drafted a team with many strengths and very nit-picky weaknesses. I believe that this roster can win a fantasy championship, however will come with close games and losses throughout the season, as the league is very deep. I predict that I will finish with a 9-4 record.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.5.1 (2025-06-13)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.3 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+ [1] htmlwidgets_1.6.4 compiler_4.5.1    fastmap_1.2.0     cli_3.6.5        
+ [5] tools_4.5.1       htmltools_0.5.8.1 yaml_2.3.10       rmarkdown_2.29   
+ [9] knitr_1.50        jsonlite_2.0.0    xfun_0.53         digest_0.6.37    
+[13] rlang_1.1.6       evaluate_1.0.5   </code></pre>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
