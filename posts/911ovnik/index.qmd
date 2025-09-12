@@ -68,6 +68,3 @@ My current plan is to stick with my guys, as I feel like I can be a league winne
 # Prediction {#sec-prediction}
 While NFL Fantasy predicts me to have a 13-1 season, I think thats a little out of reach. I think that I have drafted a team with many strengths and very nit-picky weaknesses. I believe that this roster can win a fantasy championship, however will come with close games and losses throughout the season, as the league is very deep. I predict that I will finish with a 9-4 record.
 
-```{r}
-sessionInfo()
-```
