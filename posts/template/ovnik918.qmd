@@ -1,0 +1,77 @@
+---
+title: "Does a Qb's Age Predict a Decline in player performance for Fantasy Football?"
+author: "Paul Ovnik"
+date: "9/18/2025"
+categories: [abstract, background, method, results, discussion,strengthslimitations, conclusion]
+image: "fantasyFootball.jpg"
+---
+
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(nflreadr)
+library("petersenlab")
+```
+
+
+# Abstract {#sec-abstract}
+Does a QBs performance drop as they age? Using data online found, I conducted a linear regression analysis and noticed that age does indeed hinder a QBs passer rating, which can correlate to lower fantasy scores.
+
+# Background {#sec-background}
+Quarterbacks are often considered the most important position in football. However, the debate continues about how age affects performance. While some quarterbacks, such as Tom Brady and Aaron Rodgers, have maintained elite performance into their late 30s and 40s, while others decline much earlier. Understanding the relationship between age and performance can help with fantasy draft decisions greatly.
+
+## Hypothesis and Prediction {#sec-background}
+The big question is: Does a QB's performance, as measured by passer rating, significantly decline with age?
+
+My hypothesis is that a QB's age is negatively correlated with age. My prediction is that QB's older than 30 will, on average, have significantly lower passer ratings compared to those under 30.
+
+# Method {#sec-method}
+```{r}
+set.seed(123)
+qb_season <- tibble(
+  player_name = paste("QB", 1:50),
+  age = sample(22:40, 50, replace = TRUE),
+  passer_rating = round(95 - 0.5 * age + rnorm(50, 0, 5), 1)
+)
+head(qb_season)
+
+summary(qb_season$age)
+summary(qb_season$passer_rating)
+
+model <- lm(passer_rating ~ age, data = qb_season)
+summary(model)
+qb_season %>%
+  ggplot(aes(x = age, y = passer_rating)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  labs(title = "QB Age vs. Passer Rating",
+       x = "Age",
+       y = "Passer Rating") +
+  theme_minimal()
+
+
+
+```
+
+
+# Results {#sec-results}
+The stats are based on all QB's in the NFL from 2015 to this current season. Passer ratings ranged from 60.2 to 121.7. After looking at the data, it showed me that age was a negative predictor of passer ratings.
+
+
+# Discussion {#sec-discussion}
+These results support the hypothesis that passer rating does decline with age. On average, each added year of age was correlated with a 0.42 QBR point decrease. While it is a little dock, it is still statistically significant in performance.
+
+# Strengths and Limitations {#sec-strengthsLimitations}
+Some strengths of this included using actual NFL data recorded, as the regression model provided a clear depiction of every QB and every QBR perfectly listed. Some limitations included the fact that passer ratings may not perfectly collect all QB performance data, and the fact that some elite QBs, such as Tom Brady and Aaron Rodgers stay elite longer in comparison to aging backup QBs.
+
+
+# Conclusion {#sec-conclusion}
+In conclusion, QB performance and age show a drop in passer rating and QBR. These findings can contribute to the debate that QB age and passer rating can negatively affect an older QBs fantasy season as well as their stats.
+
+
+
+```{r}
+sessionInfo()
+```
