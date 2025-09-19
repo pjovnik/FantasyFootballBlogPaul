@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d68be38d83eca2bb035acf846ffba811.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-1713c1db1ad41a796903378fc9ac7b2b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,7 +114,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -139,6 +140,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">My Blog</span>
     </a>
@@ -192,7 +195,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="YWJvdXRtZQ==">aboutme <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWJvdXR0aGlzYmxvZw==">aboutthisblog <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZmFudGFzeSUyMGZvb3RiYWxs">fantasy football <span class="quarto-category-count">(3)</span></div><div class="category" data-category="aW5zdHJ1Y3Rpb25z">instructions <span class="quarto-category-count">(1)</span></div><div class="category" data-category="anVzdGlmaWNhdGlvbg==">justification <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHJlZGljdGlvbg==">prediction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVhbSUyMG1lbWJlcnM=">team members <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVhbSUyMHBsYW4=">team plan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVhbSUyMHN0cmVuZ3Rocw==">team strengths <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVhbSUyMHdlYWtuZXNzZXM=">team weaknesses <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVtcGxhdGU=">template <span class="quarto-category-count">(2)</span></div><div class="category" data-category="d2VsY29tZQ==">welcome <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="YWJvdXRtZQ==">aboutme <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWJvdXR0aGlzYmxvZw==">aboutthisblog <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWJzdHJhY3Q=">abstract <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YmFja2dyb3VuZA==">background <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29uY2x1c2lvbg==">conclusion <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZGlzY3Vzc2lvbg==">discussion <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ZmFudGFzeSUyMGZvb3RiYWxs">fantasy football <span class="quarto-category-count">(3)</span></div><div class="category" data-category="aW5zdHJ1Y3Rpb25z">instructions <span class="quarto-category-count">(1)</span></div><div class="category" data-category="anVzdGlmaWNhdGlvbg==">justification <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bWV0aG9k">method <span class="quarto-category-count">(2)</span></div><div class="category" data-category="cHJlZGljdGlvbg==">prediction <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmVzdWx0cw==">results <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c3RyZW5ndGhzbGltaXRhdGlvbnM=">strengthslimitations <span class="quarto-category-count">(2)</span></div><div class="category" data-category="dGVhbSUyMG1lbWJlcnM=">team members <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVhbSUyMHBsYW4=">team plan <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVhbSUyMHN0cmVuZ3Rocw==">team strengths <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVhbSUyMHdlYWtuZXNzZXM=">team weaknesses <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGVtcGxhdGU=">template <span class="quarto-category-count">(2)</span></div><div class="category" data-category="d2VsY29tZQ==">welcome <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -206,7 +209,91 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="dGVhbSUyMG1lbWJlcnMlMkNqdXN0aWZpY2F0aW9uJTJDdGVhbSUyMHN0cmVuZ3RocyUyQ3RlYW0lMjB3ZWFrbmVzc2VzJTJDdGVhbSUyMHBsYW4lMkNwcmVkaWN0aW9u" data-listing-date-sort="1757548800000" data-listing-file-modified-sort="1757647422822" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="602">
+<div class="quarto-post image-right" data-index="0" data-categories="YWJzdHJhY3QlMkNiYWNrZ3JvdW5kJTJDbWV0aG9kJTJDcmVzdWx0cyUyQ2Rpc2N1c3Npb24lMkNzdHJlbmd0aHNsaW1pdGF0aW9ucyUyQ2NvbmNsdXNpb24=" data-listing-date-sort="1758153600000" data-listing-file-modified-sort="1758250580057" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="434">
+<div class="thumbnail"><a href="./posts/template/ovnik918.html" class="no-external">
+
+<img loading="lazy" src="./posts/template/fantasyFootball.jpg" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/template/ovnik918.html" class="no-external">Does a Qb’s Age Predict a Decline in player performance for Fantasy Football?</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('YWJzdHJhY3Q='); return false;">abstract</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('YmFja2dyb3VuZA=='); return false;">background</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('bWV0aG9k'); return false;">method</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cmVzdWx0cw=='); return false;">results</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGlzY3Vzc2lvbg=='); return false;">discussion</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3RyZW5ndGhzbGltaXRhdGlvbnM='); return false;">strengthslimitations</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Y29uY2x1c2lvbg=='); return false;">conclusion</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/template/ovnik918.html" class="no-external">
+Does a QBs performance drop as they age? Using data online found, I conducted a linear regression analysis and noticed that age does indeed hinder a QBs passer rating, which…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/template/ovnik918.html" class="no-external">
+<div class="listing-date">
+Sep 18, 2025
+</div>
+<div class="listing-author">
+Paul Ovnik
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="YWJzdHJhY3QlMkNiYWNrZ3JvdW5kJTJDbWV0aG9kJTJDcmVzdWx0cyUyQ2Rpc2N1c3Npb24lMkNzdHJlbmd0aHNsaW1pdGF0aW9ucyUyQ2NvbmNsdXNpb24=" data-listing-date-sort="1758153600000" data-listing-file-modified-sort="1758250580053" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="434">
+<div class="thumbnail"><a href="./posts/918 ovnik/918ovnik.html" class="no-external">
+
+<img loading="lazy" src="./posts/918 ovnik/fantasyFootball.jpg" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/918 ovnik/918ovnik.html" class="no-external">Does a Qb’s Age Predict a Decline in player performance for Fantasy Football?</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('YWJzdHJhY3Q='); return false;">abstract</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('YmFja2dyb3VuZA=='); return false;">background</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('bWV0aG9k'); return false;">method</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('cmVzdWx0cw=='); return false;">results</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('ZGlzY3Vzc2lvbg=='); return false;">discussion</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c3RyZW5ndGhzbGltaXRhdGlvbnM='); return false;">strengthslimitations</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Y29uY2x1c2lvbg=='); return false;">conclusion</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/918 ovnik/918ovnik.html" class="no-external">
+Does a QBs performance drop as they age? Using data online found, I conducted a linear regression analysis and noticed that age does indeed hinder a QBs passer rating, which…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/918 ovnik/918ovnik.html" class="no-external">
+<div class="listing-date">
+Sep 18, 2025
+</div>
+<div class="listing-author">
+Paul Ovnik
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="dGVhbSUyMG1lbWJlcnMlMkNqdXN0aWZpY2F0aW9uJTJDdGVhbSUyMHN0cmVuZ3RocyUyQ3RlYW0lMjB3ZWFrbmVzc2VzJTJDdGVhbSUyMHBsYW4lMkNwcmVkaWN0aW9u" data-listing-date-sort="1757548800000" data-listing-file-modified-sort="1758250580053" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="602">
 <div class="thumbnail"><a href="./posts/911ovnik/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/911ovnik/myteam.png" class="thumbnail-image">
@@ -246,7 +333,7 @@ Paul Ovnik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="d2VsY29tZSUyQ2Fib3V0bWUlMkNhYm91dHRoaXNibG9n" data-listing-date-sort="1756771200000" data-listing-file-modified-sort="1757647422827" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
+<div class="quarto-post image-right" data-index="3" data-categories="d2VsY29tZSUyQ2Fib3V0bWUlMkNhYm91dHRoaXNibG9n" data-listing-date-sort="1756771200000" data-listing-file-modified-sort="1758250580058" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="154">
 <div class="thumbnail"><a href="./posts/welcome/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/welcome/fantasyFootball.png" class="thumbnail-image">
@@ -280,7 +367,7 @@ Paul Ovnik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="dGVtcGxhdGUlMkNmYW50YXN5JTIwZm9vdGJhbGw=" data-listing-date-sort="1752451200000" data-listing-file-modified-sort="1757647422824" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3708">
+<div class="quarto-post image-right" data-index="4" data-categories="dGVtcGxhdGUlMkNmYW50YXN5JTIwZm9vdGJhbGw=" data-listing-date-sort="1752451200000" data-listing-file-modified-sort="1758250580054" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="19" data-listing-word-count-sort="3708">
 <div class="thumbnail"><a href="./posts/example/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/example/placeholder.jpg" class="thumbnail-image">
@@ -312,7 +399,7 @@ Insert Author’s Name Here
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="dGVtcGxhdGUlMkNmYW50YXN5JTIwZm9vdGJhbGw=" data-listing-date-sort="1720569600000" data-listing-file-modified-sort="1757647422826" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415">
+<div class="quarto-post image-right" data-index="5" data-categories="dGVtcGxhdGUlMkNmYW50YXN5JTIwZm9vdGJhbGw=" data-listing-date-sort="1720569600000" data-listing-file-modified-sort="1758250580057" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415">
 <div class="thumbnail"><a href="./posts/template/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/template/fantasyFootball.jpg" class="thumbnail-image">
@@ -344,7 +431,7 @@ Insert Author’s Name Here
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="aW5zdHJ1Y3Rpb25zJTJDY29kZSUyQ2FuYWx5c2lzJTJDZmFudGFzeSUyMGZvb3RiYWxs" data-listing-date-sort="1720483200000" data-listing-file-modified-sort="1757647422824" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2148">
+<div class="quarto-post image-right" data-index="6" data-categories="aW5zdHJ1Y3Rpb25zJTJDY29kZSUyQ2FuYWx5c2lzJTJDZmFudGFzeSUyMGZvb3RiYWxs" data-listing-date-sort="1720483200000" data-listing-file-modified-sort="1758250580055" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2148">
 <div class="thumbnail"><a href="./posts/quarto-instructions/index.html" class="no-external">
 
 <img loading="lazy" src="./posts/quarto-instructions/quarto-logo.png" class="thumbnail-image">
@@ -434,13 +521,14 @@ Insert Author’s Name Here
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
