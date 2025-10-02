@@ -1,0 +1,160 @@
+---
+title: "Does a Wide Recievers Target Share Predict their Season Yard Totals?"
+author: "Paul Ovnik"
+date: "9/30/2025"
+categories: [abstract, background, method, results, discussion,strengthslimitations, conclusion]
+---
+
+
+
+## Load Libraries {#sec-loadLibraries}
+
+
+
+```{r}
+#| message: false
+#| warning: false
+
+library("petersenlab") #located here: https://github.com/DevPsyLab/petersenlab
+library("petersenlab")
+library("XICOR")
+library("psych")
+library("DescTools")
+library("psych")
+library("correlation")
+library("effectsize")
+library("GGally")
+library("ggridges")
+library("tidyverse")
+library("nflreadr")
+nflreadr::dictionary_player_stats
+
+nfl_actualStats_player_seasonal_reg_raw <- progressr::with_progress(
+  nflreadr::load_player_stats(
+    seasons = TRUE,
+    summary_level = "reg"))
+
+nfl_actualStats_player_seasonal_regPost_raw <- progressr::with_progress(
+  nflreadr::load_player_stats(
+    seasons = TRUE,
+    summary_level = "reg+post"))
+# save(
+ # nfl_actualStats_player_seasonal_reg_raw,  # nfl_actualStats_player_seasonal_regPost_raw,
+ #  file = "../data/nfl_actualStats_player_seasonal_raw.Rdat# a"
+# )
+getwd(
+  
+)
+```
+
+
+
+# Abstract {#sec-abstract}
+
+Are wide receiver yard totals highly affected by their target share? Using data found, I noticed that the amount of targets a wide receiver gets is highly dependent on the amount of targets they get throughout the season.
+
+# Background {#sec-background}
+
+Wide receivers are often judged based on their total receiving lines, but these stats have many underlying factors, mostly including target share. A player who gets more chances to catch the ball with often get more yards, regardless if they are efficient with their targets or not. By taking a look at how a players targets relates to receiving yards, we can help us understand if volume alone propels a wide receiver.
+
+## Hypothesis and prediction
+
+The Question is: does A wide receivers target share affect their total yards on the season?
+
+My hypothesis is that wide receivers with a higher target share will get more receiving yards than those with a lower target share.
+
+# Method {#sec-method}
+
+
+
+```{r}
+                                   nfl_actualStats_player_seasonal_reg_raw %>% 
+  dplyr::select(target_share, receiving_yards) %>% 
+  dplyr::summarise(across(
+      everything(),
+      .fns = list(
+        n = ~ length(na.omit(.)),
+        missingness = ~ mean(is.na(.)) * 100,
+        M = ~ mean(., na.rm = TRUE),
+        SD = ~ sd(., na.rm = TRUE),
+        min = ~ min(., na.rm = TRUE),
+        max = ~ max(., na.rm = TRUE),
+        q10 = ~ quantile(., .10, na.rm = TRUE), # 10th quantile
+        q90 = ~ quantile(., .90, na.rm = TRUE), # 90th quantile
+        range = ~ max(., na.rm = TRUE) - min(., na.rm = TRUE),
+        IQR = ~ IQR(., na.rm = TRUE),
+        MAD = ~ mad(., na.rm = TRUE),
+        CV = ~ sd(., na.rm = TRUE) / mean(., na.rm = TRUE),
+        median = ~ median(., na.rm = TRUE),
+        pseudomedian = ~ DescTools::HodgesLehmann(., na.rm = TRUE),
+        mode = ~ petersenlab::Mode(., multipleModes = "mean"),
+        skewness = ~ psych::skew(., na.rm = TRUE),
+        kurtosis = ~ psych::kurtosi(., na.rm = TRUE)),
+      .names = "{.col}.{.fn}")) %>%
+    tidyr::pivot_longer(
+      cols = everything(),
+      names_to = c("variable","index"),
+      names_sep = "\\.") %>% 
+    tidyr::pivot_wider(
+      names_from = index,
+      values_from = value)    
+cov(
+  nfl_actualStats_player_seasonal_reg_raw %>% filter(position == "WR") %>% select(target_share, receiving_yards),
+  use = "pairwise.complete.obs")
+
+plot_scatterplot <- ggplot2::ggplot(
+  data = nfl_actualStats_player_seasonal_reg_raw %>% filter(position %in% c("WR")),
+  aes(
+    x = target_share,
+    y = receiving_yards )) +
+  geom_point(
+    aes(
+      text = player_display_name, # WR
+      label = season), # Targets
+    alpha = 0.05) +
+  geom_smooth(
+    method = "lm",
+    color = "red") +
+  geom_smooth() +
+  coord_cartesian(
+    ylim = c(0,NA),
+    expand = FALSE) +
+  labs(
+    x = "Targets",
+    y = "Receiving Yards",
+    title = "Receiving Yards and Target Share",
+    subtitle = "(Among WRs)"
+  ) +
+  theme_classic()
+
+plotly::ggplotly(plot_scatterplot)
+```
+
+
+
+# Results {#sec-results}
+
+According to the scatterplot, we can see that a majroity target share is correlated with higher season receiving yard totals.
+
+# Discussion {#sec-discussion}
+
+These results support the hypothesis of target share being an important factor in a wide receivers total receiving yards in a season. I noticed that the coefficient between the two was positive,leading for additional yards after every target.
+
+## Strengths and Limitations {#sec-strengthsLimitations}
+
+Some strengths about this study was that the hypothesis was indeed supported. A negative is that the data is not necessarily easy to read, and that there are also other factors that can lead to a WRs receiving statistics, including YAC and their QBs health/performance.
+
+## Conclusion {#sec-conclusion}
+
+In conclusion, we now know that a wide receivers yards per season is highly dependent on their target share. While target share is very important, other factors can influence a WRs performance. However, according to the graph there is a major correlation between the two, and seems to be the highest factor.
+
+# Session Info {#sec-sessionInfo}
+
+This section provides your session info for reproducibility.
+
+
+
+```{r}
+sessionInfo()
+```
+
