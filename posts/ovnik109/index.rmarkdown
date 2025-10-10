@@ -5,7 +5,11 @@ date: "10/09/2025"
 categories: [abstract,aiDisclosure, background, method, results, discussion,strengthslimitations, conclusion]
 ---
 
+
+
 ## Load Libraries {#sec-loadLibraries}
+
+
 
 ```{r}
 #| message: false
@@ -36,6 +40,8 @@ getwd(
 
 ```
 
+
+
 ## AI Disclosure {#sec-aiDisclosure}
 
 AI Disclosure: AI was not used for this project.
@@ -54,6 +60,8 @@ The Question is: Do previous weekly performances predict next week's statistics?
 My hypothesis is that past performances do have a factor in their statistics for the next week, but not at a high rate.
 
 # Method {#sec-method}
+
+
 
 ```{r}
 data_offense <- snap_counts %>%
@@ -100,6 +108,8 @@ plotly::ggplotly(plot_scatterplot)
 
 ```
 
+
+
 # Results {#sec-results}
 
 According to these results, we can see that simply being on the field more results in more points. Wide receivers and tight ends showed the most variety and difference in points.From a cognitive bias standpoint, this analysis highlights how fantasy managers can become a victim of recency bias or availability bias, overvaluing players based on recent big plays or touchdowns instead of steady, consistent usage. 
@@ -117,6 +127,9 @@ Some strengths about this study was that the hypothesis was indeed supported. A 
 In conclusion, we now know that snap counts can lead to great fantasy performances. High snap counts lead to high fantasy scores, while week in and week out inconsistencies and "trusting your gut" can ultimately cost you in the long run. While players can go on high point streaks, consistency is what matters in the end. Don't fall for streaky waiver wire players, and trade for players who can make consistent impacts!
 
 
+
+
 ```{r}
 sessionInfo()
 ```
+
