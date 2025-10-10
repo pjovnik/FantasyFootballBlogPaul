@@ -24,7 +24,7 @@ library("ggridges")
 library("tidyverse")
 library("nflreadr")
 library("dplyr")
--
+
 nflreadr::dictionary_player_stats
 player_stats <- load_player_stats(seasons = 2023, summary_level = "reg")
 snap_counts  <- load_snap_counts(seasons = 2023)
