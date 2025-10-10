@@ -36,7 +36,7 @@ getwd(
 
 ```
 
-# AI Disclosure {#sec-aiDisclosure}
+## AI Disclosure {#sec-aiDisclosure}
 
 AI Disclosure: AI was not used for this project.
 
