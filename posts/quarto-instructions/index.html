@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Insert Author’s Name Here">
+<meta name="dcterms.date" content="2024-07-09">
+
+<title>Quarto Instructions – My Blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">My Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Quarto Instructions</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">instructions</div>
+                <div class="quarto-category">code</div>
+                <div class="quarto-category">analysis</div>
+                <div class="quarto-category">fantasy football</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Insert Author’s Name Here </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">July 9, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-preamble" id="toc-sec-preamble" class="nav-link active" data-scroll-target="#sec-preamble"><span class="header-section-number">1</span> Preamble</a>
+  <ul class="collapse">
+  <li><a href="#sec-loadLibraries" id="toc-sec-loadLibraries" class="nav-link" data-scroll-target="#sec-loadLibraries"><span class="header-section-number">1.1</span> Load Libraries</a></li>
+  </ul></li>
+  <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link" data-scroll-target="#sec-intro"><span class="header-section-number">2</span> Intro</a></li>
+  <li><a href="#sec-postBlogArticle" id="toc-sec-postBlogArticle" class="nav-link" data-scroll-target="#sec-postBlogArticle"><span class="header-section-number">3</span> Steps to Post your Blog Article</a></li>
+  <li><a href="#sec-quartoInstructions" id="toc-sec-quartoInstructions" class="nav-link" data-scroll-target="#sec-quartoInstructions"><span class="header-section-number">4</span> Instructions for Working with <code>Quarto</code></a></li>
+  <li><a href="#sec-submitBlogArticles" id="toc-sec-submitBlogArticles" class="nav-link" data-scroll-target="#sec-submitBlogArticles"><span class="header-section-number">5</span> Submitting Blog Articles</a></li>
+  <li><a href="#sec-dataFiles" id="toc-sec-dataFiles" class="nav-link" data-scroll-target="#sec-dataFiles"><span class="header-section-number">6</span> Data Files</a></li>
+  <li><a href="#sec-level1Heading" id="toc-sec-level1Heading" class="nav-link" data-scroll-target="#sec-level1Heading"><span class="header-section-number">7</span> Level-1 Heading</a>
+  <ul class="collapse">
+  <li><a href="#sec-level2Heading" id="toc-sec-level2Heading" class="nav-link" data-scroll-target="#sec-level2Heading"><span class="header-section-number">7.1</span> Level-2 Heading</a>
+  <ul class="collapse">
+  <li><a href="#sec-level3Heading" id="toc-sec-level3Heading" class="nav-link" data-scroll-target="#sec-level3Heading"><span class="header-section-number">7.1.1</span> Level-3 Heading</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sec-addCodeOptions" id="toc-sec-addCodeOptions" class="nav-link" data-scroll-target="#sec-addCodeOptions"><span class="header-section-number">8</span> Adding Code Options</a></li>
+  <li><a href="#sec-plot" id="toc-sec-plot" class="nav-link" data-scroll-target="#sec-plot"><span class="header-section-number">9</span> Plot</a></li>
+  <li><a href="#sec-image" id="toc-sec-image" class="nav-link" data-scroll-target="#sec-image"><span class="header-section-number">10</span> Image</a></li>
+  <li><a href="#sec-table" id="toc-sec-table" class="nav-link" data-scroll-target="#sec-table"><span class="header-section-number">11</span> Table</a></li>
+  <li><a href="#sec-unorderedLists" id="toc-sec-unorderedLists" class="nav-link" data-scroll-target="#sec-unorderedLists"><span class="header-section-number">12</span> Unordered Lists</a></li>
+  <li><a href="#sec-orderedLists" id="toc-sec-orderedLists" class="nav-link" data-scroll-target="#sec-orderedLists"><span class="header-section-number">13</span> Ordered Lists</a></li>
+  <li><a href="#sec-crossReferences" id="toc-sec-crossReferences" class="nav-link" data-scroll-target="#sec-crossReferences"><span class="header-section-number">14</span> Cross-References</a></li>
+  <li><a href="#sec-troubleshooting" id="toc-sec-troubleshooting" class="nav-link" data-scroll-target="#sec-troubleshooting"><span class="header-section-number">15</span> Troubleshooting</a>
+  <ul class="collapse">
+  <li><a href="#sec-troubleshootingR" id="toc-sec-troubleshootingR" class="nav-link" data-scroll-target="#sec-troubleshootingR"><span class="header-section-number">15.1</span> <code>R</code></a></li>
+  <li><a href="#sec-troubleshootingGitHub" id="toc-sec-troubleshootingGitHub" class="nav-link" data-scroll-target="#sec-troubleshootingGitHub"><span class="header-section-number">15.2</span> <code>GitHub</code></a></li>
+  <li><a href="#sec-troubleshootingGitHubPages" id="toc-sec-troubleshootingGitHubPages" class="nav-link" data-scroll-target="#sec-troubleshootingGitHubPages"><span class="header-section-number">15.3</span> <code>GitHub Pages</code></a></li>
+  </ul></li>
+  <li><a href="#sec-sessionInfo" id="toc-sec-sessionInfo" class="nav-link" data-scroll-target="#sec-sessionInfo"><span class="header-section-number">16</span> Session Info</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="sec-preamble" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Preamble</h1>
+<p>This document provides instructions for using Quarto, which is how you will write blog posts.</p>
+<section id="sec-loadLibraries" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="sec-loadLibraries"><span class="header-section-number">1.1</span> Load Libraries</h2>
+<p>To load libraries, use the following syntax:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>) <span class="co">#located here: https://github.com/DevPsyLab/petersenlab</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The resulting output (in the document) looks like this:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>) <span class="co">#located here: https://github.com/DevPsyLab/petersenlab</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="sec-intro" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Intro</h1>
+<p>This document provides instructions for your blog posts. This document is a <a href="https://quarto.org"><code>Quarto</code></a> document, which is an example of a computational notebook. <a href="https://quarto.org"><code>Quarto</code></a> enables you to weave together content and executable code into a finished document. In a <a href="https://quarto.org"><code>Quarto</code></a> document, the results appear beneath the code. This allows you to share your data, statistical code, results, graphics, and text interpreting the analyses all in-line. Sharing data and your analysis code with others helps ensure reproducibility—i.e., that others get the exact same results as you. For more information on the value of computational notebooks, see the article titled “<a href="https://www.theatlantic.com/science/archive/2018/04/the-scientific-paper-is-obsolete/556676/">The Scientific Paper Is Obsolete</a>”. To learn more about <a href="https://quarto.org"><code>Quarto</code></a> see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<p>The <a href="https://quarto.org/docs/computations/r.html"><code>Quarto</code> website</a> provides documentation on using <code>R</code> within a <a href="https://quarto.org"><code>Quarto</code></a> document: <a href="https://quarto.org/docs/computations/r.html" class="uri">https://quarto.org/docs/computations/r.html</a>. <a href="https://quarto.org"><code>Quarto</code></a> is based on <a href="https://quarto.org/docs/authoring/markdown-basics.html"><code>Markdown</code></a> syntax. For more info on the basics of <a href="https://quarto.org/docs/authoring/markdown-basics.html"><code>Markdown</code></a>, see here: <a href="https://quarto.org/docs/authoring/markdown-basics.html" class="uri">https://quarto.org/docs/authoring/markdown-basics.html</a>.</p>
+</section>
+<section id="sec-postBlogArticle" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Steps to Post your Blog Article</h1>
+<p>To post your blog article, follow the following steps:</p>
+<ol type="1">
+<li>Follow the steps at the following link to create your <code>GitHub</code> repository using the <code>QuartoBlogFantasyFootball</code> template: <a href="https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook/getting-started.html#sec-initialSetup" class="uri">https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook/getting-started.html#sec-initialSetup</a>.</li>
+<li>Create a new folder for the article under the <code>posts</code> folder of your repository. I recommend naming the folder after either: a) the date (e.g., <code>2025-09-30</code>), b) the name of the assignment (e.g., <code>Blog Article 1</code>), or c) a brief title for the article (<code>Welcome to My Blog</code>). <strong>Note</strong>: you will NOT need to create a new folder for your “Welcome to my Blog!” post; to create your “Welcome to my Blog!” post you can just edit the already existing welcome post in the following location of your repository: <code>./posts/welcome/index.qmd</code>.</li>
+<li>Make a copy of the <a href="https://github.com/isaactpetersen/QuartoBlogFantasyFootball/blob/main/posts/template/index.qmd"><code>index.qmd</code> file</a> from the <a href="https://github.com/isaactpetersen/QuartoBlogFantasyFootball/tree/main/posts/template"><code>template</code> folder</a> and paste it into the new folder you created for your post (do not delete the original file). <strong>Note</strong>: you will NOT need to paste this file for your “Welcome to my Blog!” post; to create your “Welcome to my Blog!” post you can just edit the already existing welcome post in the following location of your repository: <code>./posts/welcome/index.qmd</code>.</li>
+<li>Write your article by filling in the contents of the new <code>index.qmd</code> you created. In the same folder, add any images you want to include in your post. Make sure you add—to the <code>data</code> folder—whatever data files you need for your post. In writing the article, I strongly encourage you to consult the <a href="https://isaactpetersen.github.io/QuartoBlogFantasyFootball/posts/example/">example post</a> (and the <a href="https://github.com/isaactpetersen/QuartoBlogFantasyFootball/blob/main/posts/example/index.qmd">associated <code>.qmd</code> file</a> that generated it) and the <a href="https://isaactpetersen.github.io/QuartoBlogFantasyFootball/posts/template/">template post</a> (and the <a href="https://github.com/isaactpetersen/QuartoBlogFantasyFootball/blob/main/posts/template/index.qmd">associated <code>.qmd</code> file</a> that generated it) to ensure you include the necessary information and follow the required structure.</li>
+<li>After writing the article, preview it to make sure it looks the way you want it to look by rendering it locally. To render the article on your local computer, with the <code>index.qmd</code> file open, click the “Render” button in the top left of <code>RStudio</code> (see image below). <a href="render.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Rendering Your Post in RStudio"><img src="render.png" class="img-fluid" alt="Rendering Your Post in RStudio"></a></li>
+<li>After you get the post the way you want it to look locally, create a commit in <code>GitHub</code> with your changes and push them to your <code>GitHub</code> repository.</li>
+<li>Go the the “Actions” tab of your <code>GitHub</code> repository to track the status as your blog and post(s) compile. This will take a while the first time to compile on <code>GitHub</code>, because it needs to install all of the necessary packages. If it compiles successfully, your blog should be viewable at the following link: <code>https://YOUR_GITHUB_USERNAME.github.io/NAME_OF_YOUR_REPOSITORY/</code>. For instance, my example blog is located at the following location: <a href="https://isaactpetersen.github.io/QuartoBlogFantasyFootball/" class="uri">https://isaactpetersen.github.io/QuartoBlogFantasyFootball/</a>.</li>
+<li>If there are any errors during compilation, fix them. If there are no errors, check the post online to see if it appears as expected. If it does not appear as expected, make the additional changes you want, and create another commit in <code>GitHub</code> with your changes and push them until it appears the way you expect.</li>
+</ol>
+</section>
+<section id="sec-quartoInstructions" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Instructions for Working with <code>Quarto</code></h1>
+<ul>
+<li><strong>Use a new line for every sentence.</strong> This helps with version control—individually changed sentences will be highlighted upon commits (which are easy to parse to identify the specific changes) rather than whole paragraphs (which are a nightmare to parse to identify the specific changes). <code>Quarto</code> will automatically put a space where a new line begins. To start a new paragraph, put a blank line in between the paragraphs.</li>
+<li>Wrap <code>R</code> code in a “code block”, with three backticks (<code>```</code>) at the beginning and end of the block, and designating the code language as <code>R</code> using <code>{r}</code>, as below:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># insert R code here (without the pound sign)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Add linked content (e.g., images, data) to the sub-directories of the relevant post; do not add a file that is more than 50 mb to the repo. Data files on <code>GitHub</code> can be no larger than 50 mb. If you want to use a data file that is larger than 50 mb, either subset the data to the relevant rows/columns you need and save it as a new data file that is less than 50 mb, or <a href="https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook/download-football-data.html">download the data from the internet</a> as part of the <code>R</code> code in the <a href="https://quarto.org"><code>Quarto</code></a> script so that the data file does not need to be saved in the repo. For example, here is an example of <code>R</code> code to download data:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>nfl_pbp_raw <span class="ot">&lt;-</span> nflreadr<span class="sc">::</span><span class="fu">load_pbp</span>(<span class="at">seasons =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The resulting output (in the document) looks like this:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nfl_pbp_raw <span class="ot">&lt;-</span> nflreadr<span class="sc">::</span><span class="fu">load_pbp</span>(<span class="at">seasons =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<ul>
+<li>Use no spaces in file or folder names. Use a dash (-) instead of a space.</li>
+<li>When making numbered (ordered) lists, just use <code>1.</code> for all numbers. <a href="https://quarto.org"><code>Quarto</code></a> will make them sequential automatically. This makes it easier to add/reorder items, so you do not have to renumber manually each time there is a change.</li>
+<li>To update the list of <code>R</code> packages that are installed for running the blog post (<code>.qmd</code>) files, update the <code>DESCRIPTION</code> file.</li>
+<li>The default editor in RStudio is the “Source” editor, which allows you to edit the source code directly. I recommend using the “Source” editor, because it gives you full control of the code, and you learn how to manipulate it. However, you may use the <a href="https://quarto.org/docs/visual-editor/">“Visual” editor</a>, if you prefer.</li>
+</ul>
+</section>
+<section id="sec-submitBlogArticles" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Submitting Blog Articles</h1>
+<p>See the syllabus for instructions regarding submitting your blog article. As noted in the syllabus, <u><strong>you are encouraged to submit your blog article well before the deadline</strong></u>. You can expect to run into technical issues (e.g., errors when running your code, issues getting the blog post to compile, etc.). And, it can take a long time for the blog to compile the first time, because it needs to install all of the necessary packages (it can also take a while for subsequent runs for which new versions of the packages are available and the packages need to be updated). Thus, you should give yourself plenty of time to troubleshoot so that you can submit your blog article on time. If you leave it for the last day, it is unlikely that you will be able to submit your blog article on time! See the syllabus for suggestions on how to troubleshoot when issues arise.</p>
+</section>
+<section id="sec-dataFiles" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Data Files</h1>
+<p>As part of your writing assignments, you will analyze data. Thus, you will need to have data. You can use any data file(s) as part of your writing assignments—including data files that included in the course/textbook repository, data files that you find online, data files that you create, and/or data files that you simulate. You should specify where/how you obtained, created, or simulated the data. If you want to save a data file in the <code>GitHub</code> repository to be loaded and used in a post, you can save the data file in the same folder as the post. Or, if you want to use the same data file in multiple posts, you can save the data files in the “data” folder that is in the root of the repository.</p>
+<p>To load a data file in the same folder as the post, use the following <code>R</code> code (in a code block):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"DATA_FILENAME.RData"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The resulting output (in the document) looks like this:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"DATA_FILENAME.RData"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>To load a data file in the root “data” folder, use the following <code>R</code> code (in a code block):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"../../data/DATA_FILENAME.RData"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The resulting output (in the document) looks like this:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"../../data/DATA_FILENAME.RData"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="sec-level1Heading" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Level-1 Heading</h1>
+<p>Create a level-1 heading using the following syntax (where <code>{#sec-level1Heading}</code> is a <em>unique</em> heading label that can be used for <a href="#sec-crossReferences">cross-references</a>):</p>
+<pre><code># Level-1 Heading {#sec-level1Heading}</code></pre>
+<section id="sec-level2Heading" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="sec-level2Heading"><span class="header-section-number">7.1</span> Level-2 Heading</h2>
+<p>Create a level-2 heading using the following syntax (where <code>{#sec-level2Heading}</code> is a <em>unique</em> heading label that can be used for <a href="#sec-crossReferences">cross-references</a>):</p>
+<pre><code>## Level-2 Heading {#sec-level2Heading}</code></pre>
+<section id="sec-level3Heading" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="sec-level3Heading"><span class="header-section-number">7.1.1</span> Level-3 Heading</h3>
+<p>Create a level-3 heading using the following syntax (where <code>{#sec-level3Heading}</code> is a <em>unique</em> heading label that can be used for <a href="#sec-crossReferences">cross-references</a>):</p>
+<pre><code>### Level-3 Heading {#sec-level3Heading}</code></pre>
+<section id="sec-level4Heading" class="level4" data-number="7.1.1.1">
+<h4 data-number="7.1.1.1" class="anchored" data-anchor-id="sec-level4Heading"><span class="header-section-number">7.1.1.1</span> Level-4 Heading</h4>
+<p>Create a level-4 heading using the following syntax (where <code>{#sec-level4Heading}</code> is a <em>unique</em> heading label that can be used for <a href="#sec-crossReferences">cross-references</a>):</p>
+<pre><code>#### Level-4 Heading {#sec-level4Heading}</code></pre>
+</section>
+</section>
+</section>
+</section>
+<section id="sec-addCodeOptions" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Adding Code Options</h1>
+<p>You can add options to executable code like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The resulting output (in the document) looks like this:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>The <code>echo: false</code> option disables the printing of code (only output is displayed). Below is a code block that specifies <code>eval: false</code>, which allows providing code without executing the code:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The resulting output (in the document) looks like this:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Below is a code block that specifies <code>message: false</code> and <code>warning: false</code> to suppress messages and warnings:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>) <span class="co">#located here: https://github.com/DevPsyLab/petersenlab</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The resulting output (in the document) looks like this:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>) <span class="co">#located here: https://github.com/DevPsyLab/petersenlab</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="sec-plot" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Plot</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-insertPlotLabel</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The resulting output (in the document) looks like this:</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-insertPlotLabel" class="quarto-float quarto-figure quarto-figure-center anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-insertPlotLabel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-insertPlotLabel-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1: "><img src="index_files/figure-html/fig-insertPlotLabel-1.png" id="fig-insertPlotLabel" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-insertPlotLabel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-image" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Image</h1>
+<p>To include an image, use the following syntax:</p>
+<pre><code>![Insert figure caption](quarto-logo.png){#fig-insertFigureLabel}</code></pre>
+<p>The resulting output (in the document) looks like this:</p>
+<div id="fig-insertFigureLabel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-insertFigureLabel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="quarto-logo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;2: "><img src="quarto-logo.png" id="fig-insertFigureLabel" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-insertFigureLabel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+<p>For more info on using images in <a href="https://quarto.org"><code>Quarto</code></a>, see here: <a href="https://quarto.org/docs/authoring/figures.html" class="uri">https://quarto.org/docs/authoring/figures.html</a>.</p>
+</section>
+<section id="sec-table" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Table</h1>
+<p>Here is the syntax to create a table (the location of the colon in a given column specifies the text justification of that column):</p>
+<pre><code>| Default | Left | Right | Center |
+|---------|:-----|------:|:------:|
+| 12      | 12   |    12 |   12   |
+| 123     | 123  |   123 |  123   |
+| 1       | 1    |     1 |   1    |</code></pre>
+<p>The resulting output (in the document) looks like this:</p>
+<div id="tbl-insertTableLabel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-insertTableLabel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Insert table caption
+</figcaption>
+<div aria-describedby="tbl-insertTableLabel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Default</th>
+<th style="text-align: left;">Left</th>
+<th style="text-align: right;">Right</th>
+<th style="text-align: center;">Center</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>12</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: center;">12</td>
+</tr>
+<tr class="even">
+<td>123</td>
+<td style="text-align: left;">123</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: center;">123</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>For more info on using tables in <a href="https://quarto.org"><code>Quarto</code></a>, see here: <a href="https://quarto.org/docs/authoring/tables.html" class="uri">https://quarto.org/docs/authoring/tables.html</a>.</p>
+</section>
+<section id="sec-unorderedLists" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Unordered Lists</h1>
+<p>To create unordered (bulleted) lists, use the following syntax:</p>
+<pre><code>- one item
+- one item
+- one item
+    - one more item
+    - one more item
+    - one more item</code></pre>
+<p>The resulting output (in the document) looks like this:</p>
+<ul>
+<li>one item</li>
+<li>one item</li>
+<li>one item
+<ul>
+<li>one more item</li>
+<li>one more item</li>
+<li>one more item</li>
+</ul></li>
+</ul>
+</section>
+<section id="sec-orderedLists" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Ordered Lists</h1>
+<p>To create ordered (numbered) lists, use the following syntax (make sure to use <code>1</code> for all numbers):</p>
+<pre><code>1. the first item
+1. the second item
+1. the third item
+    - one unordered item
+    - one unordered item</code></pre>
+<p>The resulting output (in the document) looks like this (note how the <code>1</code>s were automatically renumbered correctly):</p>
+<ol type="1">
+<li>the first item</li>
+<li>the second item</li>
+<li>the third item
+<ul>
+<li>one unordered item</li>
+<li>one unordered item</li>
+</ul></li>
+</ol>
+</section>
+<section id="sec-crossReferences" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Cross-References</h1>
+<p>You can create cross-references using the following syntax:</p>
+<pre><code>Here is a cross-reference to @sec-level1Heading.
+Or, here is [another cross-reference](#sec-level1Heading) to the same section header.
+
+Here is a cross-reference to @fig-insertPlotLabel.
+Or here is [another cross-reference](#fig-insertPlotLabel) to the same plot.
+
+Here is a cross-reference to @fig-insertFigureLabel.
+Or here is [another cross-reference](#fig-insertFigureLabel) to the same image.
+
+Here is a cross-reference to @tbl-insertTableLabel.
+Or here is [another cross-reference](#tbl-insertTableLabel) ot the same table.</code></pre>
+<p>The resulting output (in the document) looks like this:</p>
+<p>Here is a cross-reference to <a href="#sec-level1Heading" class="quarto-xref">Section&nbsp;7</a>. Or, here is <a href="#sec-level1Heading">another cross-reference</a> to the same section header.</p>
+<p>Here is a cross-reference to <a href="#fig-insertPlotLabel" class="quarto-xref">Figure&nbsp;1</a>. Or here is <a href="#fig-insertPlotLabel">another cross-reference</a> to the same plot.</p>
+<p>Here is a cross-reference to <a href="#fig-insertFigureLabel" class="quarto-xref">Figure&nbsp;2</a>. Or here is <a href="#fig-insertFigureLabel">another cross-reference</a> to the same image.</p>
+<p>Here is a cross-reference to <a href="#tbl-insertTableLabel" class="quarto-xref">Table&nbsp;1</a>. Or here is <a href="#tbl-insertTableLabel">another cross-reference</a> ot the same table.</p>
+<p>For more info on cross-references, see here: <a href="https://quarto.org/docs/authoring/cross-references.html" class="uri">https://quarto.org/docs/authoring/cross-references.html</a>.</p>
+</section>
+<section id="sec-troubleshooting" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Troubleshooting</h1>
+<p>If you run into questions/issues/warnings/errors and need to troubleshoot, see the syllabus for suggestions on how to troubleshoot when issues arise.</p>
+<p>Below are sections for common questions/issues/warnings/errors in <a href="#sec-troubleshootingR"><code>R</code></a>, <a href="#sec-troubleshootingGitHub"><code>GitHub</code></a>, and <a href="#sec-troubleshootingGitHubPages"><code>GitHub Pages</code></a> (that I will populate as I receive questions), and how to info on how to address them.</p>
+<section id="sec-troubleshootingR" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="sec-troubleshootingR"><span class="header-section-number">15.1</span> <code>R</code></h2>
+</section>
+<section id="sec-troubleshootingGitHub" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="sec-troubleshootingGitHub"><span class="header-section-number">15.2</span> <code>GitHub</code></h2>
+</section>
+<section id="sec-troubleshootingGitHubPages" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="sec-troubleshootingGitHubPages"><span class="header-section-number">15.3</span> <code>GitHub Pages</code></h2>
+</section>
+</section>
+<section id="sec-sessionInfo" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Session Info</h1>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.5.1 (2025-06-13)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.3 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] petersenlab_1.2.0
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.6       xfun_0.53          ggplot2_4.0.0      htmlwidgets_1.6.4 
+ [5] psych_2.5.6        lattice_0.22-7     quadprog_1.5-8     vctrs_0.6.5       
+ [9] tools_4.5.1        Rdpack_2.6.4       generics_0.1.4     parallel_4.5.1    
+[13] stats4_4.5.1       tibble_3.3.0       cluster_2.1.8.1    pkgconfig_2.0.3   
+[17] Matrix_1.7-3       data.table_1.17.8  checkmate_2.3.3    RColorBrewer_1.1-3
+[21] S7_0.2.0           lifecycle_1.0.4    compiler_4.5.1     farver_2.1.2      
+[25] stringr_1.5.2      mnormt_2.1.1       mitools_2.4        htmltools_0.5.8.1 
+[29] yaml_2.3.10        htmlTable_2.4.3    Formula_1.2-5      pillar_1.11.1     
+[33] nloptr_2.2.1       MASS_7.3-65        Hmisc_5.2-3        reformulas_0.4.1  
+[37] rpart_4.1.24       boot_1.3-31        nlme_3.1-168       lavaan_0.6-20     
+[41] tidyselect_1.2.1   digest_0.6.37      mvtnorm_1.3-3      stringi_1.8.7     
+[45] reshape2_1.4.4     purrr_1.1.0        dplyr_1.1.4        splines_4.5.1     
+[49] fastmap_1.2.0      grid_4.5.1         colorspace_2.1-2   cli_3.6.5         
+[53] magrittr_2.0.4     base64enc_0.1-3    pbivnorm_0.6.0     foreign_0.8-90    
+[57] scales_1.4.0       backports_1.5.0    rmarkdown_2.30     nnet_7.3-20       
+[61] lme4_1.1-37        gridExtra_2.3      evaluate_1.0.5     knitr_1.50        
+[65] rbibutils_2.3      mix_1.0-13         viridisLite_0.4.2  rlang_1.1.6       
+[69] Rcpp_1.1.0         xtable_1.8-4       glue_1.8.0         DBI_1.2.3         
+[73] rstudioapi_0.17.1  minqa_1.2.8        jsonlite_2.0.0     R6_2.6.1          
+[77] plyr_1.8.9        </code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

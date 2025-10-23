@@ -1,0 +1,97 @@
+---
+title: "Are Touchdowns Predictable?"
+author: "Paul Ovnik"
+date: "10/23/2025"
+categories: [abstract,aiDisclosure, background, method, results, discussion,strengthslimitations, conclusion]
+---
+
+## Load Libraries {#sec-loadLibraries}
+
+```{r}
+#| message: false
+#| warning: false
+
+library("petersenlab") 
+library("petersenlab")
+library("psych")
+library("DescTools")
+library("psych")
+library("GGally")
+library("ggridges")
+library("tidyverse")
+library("nflreadr")
+library("dplyr")
+library("ggplot2")
+lib
+
+
+getwd(
+  
+
+)
+
+```
+
+## AI Disclosure {#sec-aiDisclosure}
+
+AI Disclosure: AI was not used for this project.
+
+
+# Abstract {#sec-abstract}
+Many fantasy managers often rely on the set projections to decide to start or sit a player. How accurate are these predictions? I used a simulation of NFL data to see if a model could predict whether or not a player can score or not. The results of this finding can indicate if players with higher projections lead to scores, and can help us become aware of our own biases and look deeper than projections put out by our fantasy services.
+
+# Background {#sec-background}
+Setting a weekly lineup can take zero hesitation or it can be incredibly important. However, it all comes down to whether or not the player performs. The forecasts of each player are often labeled under their projected stat line of that certain game; all based on score probability, yardage probability, or catch probability. By comparing these predictions to actual results, interpreting projections and avoiding biases in certain players can help you set a better lineup!
+
+## Hypothesis and prediction
+
+The Question is: How accurately can fantasy football projections predict whether a player scores in a certain week or not.
+
+My hypothesis is that players with a higher projection will score at a higher rate than those who do not, but not in every circumstance.
+
+# Method {#sec-method}
+
+```{r}
+
+player <- c("Player1","Player2","Player3","Player4","Player5",
+            "Player6","Player7","Player8","Player9","Player10")
+
+projected_points <- c(8, 12, 15, 10, 18, 20, 14, 16, 13, 4)
+touchdown <- c(0, 0, 1, 0, 1, 1, 0, 1, 1, 1)
+
+fantasy <- data.frame(player, projected_points, touchdown)
+
+# View the data
+fantasy
+
+# Simple scatterplot
+ggplot(fantasy, aes(x = projected_points, y = touchdown)) +
+  geom_point(color = "blue", size = 3) +
+  geom_smooth(method = "glm", method.args = list(family = "binomial"), color = "red") +
+  labs(
+    title = "Fantasy Football: Projected Points vs. Touchdowns",
+    x = "Projected Fantasy Points",
+    y = "Touchdown"
+  ) +
+  theme_minimal()
+
+```
+
+# Results {#sec-results}
+
+In this experiment, I created 10 random players with random point projections, and either a 1 or a 0 if they score a touchdown or not.The scatter plot shows that on average, players with a higher point projection will score more. Although there are some outliers  of course, the higher point projection will often lead to more touchdowns. This can really highlight the fact that fantasy is very unpredictable.
+
+# Discussion {#sec-discussion}
+
+I believe that my hypothesis was supported; higher projected points can predict higher odds of scoring. Although touchdowns are unpredictable, the accuracy is of course limited. This can support the fact that projections are more of a guide, not a certainty.
+
+## Strengths and Limitations {#sec-strengthsLimitations}
+
+Some strengths about this study was that the hypothesis was indeed supported.Some negatives include that this data was purely simulated and didn't use real players. 
+## Conclusion {#sec-conclusion}
+
+In conclusion, higher projections certainly point to higher odds of scoring touchdowns. In reality, fantasy projections, no matter who they came from, are never ever perfect. It is better to use these projections as more of a guide, and not completely certain of happening. It is better to do your own research and decide who has the best chances of creating the most upside that week.
+
+```{r}
+sessionInfo()
+```
