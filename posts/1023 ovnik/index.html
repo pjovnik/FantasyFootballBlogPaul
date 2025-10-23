@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Paul Ovnik">
-<meta name="dcterms.date" content="2025-09-18">
+<meta name="dcterms.date" content="2025-10-23">
 
-<title>Does a Qb’s Age Predict a Decline in player performance for Fantasy Football? – My Blog</title>
+<title>Are Touchdowns Predictable? – My Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,9 +156,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Does a Qb’s Age Predict a Decline in player performance for Fantasy Football?</h1>
+      <h1 class="title">Are Touchdowns Predictable?</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">abstract</div>
+                <div class="quarto-category">aiDisclosure</div>
                 <div class="quarto-category">background</div>
                 <div class="quarto-category">method</div>
                 <div class="quarto-category">results</div>
@@ -182,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 18, 2025</p>
+        <p class="date">October 23, 2025</p>
       </div>
     </div>
     
@@ -198,16 +199,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-abstract" id="toc-sec-abstract" class="nav-link active" data-scroll-target="#sec-abstract"><span class="header-section-number">1</span> Abstract</a></li>
+  <li><a href="#sec-loadLibraries" id="toc-sec-loadLibraries" class="nav-link active" data-scroll-target="#sec-loadLibraries"><span class="header-section-number">0.1</span> Load Libraries</a></li>
+  <li><a href="#sec-aiDisclosure" id="toc-sec-aiDisclosure" class="nav-link" data-scroll-target="#sec-aiDisclosure"><span class="header-section-number">0.2</span> AI Disclosure</a></li>
+  <li><a href="#sec-abstract" id="toc-sec-abstract" class="nav-link" data-scroll-target="#sec-abstract"><span class="header-section-number">1</span> Abstract</a></li>
   <li><a href="#sec-background" id="toc-sec-background" class="nav-link" data-scroll-target="#sec-background"><span class="header-section-number">2</span> Background</a>
   <ul class="collapse">
-  <li><a href="#sec-background" id="toc-sec-background" class="nav-link" data-scroll-target="#sec-background"><span class="header-section-number">2.1</span> Hypothesis and Prediction</a></li>
+  <li><a href="#hypothesis-and-prediction" id="toc-hypothesis-and-prediction" class="nav-link" data-scroll-target="#hypothesis-and-prediction"><span class="header-section-number">2.1</span> Hypothesis and prediction</a></li>
   </ul></li>
   <li><a href="#sec-method" id="toc-sec-method" class="nav-link" data-scroll-target="#sec-method"><span class="header-section-number">3</span> Method</a></li>
   <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">4</span> Results</a></li>
-  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">5</span> Discussion</a></li>
-  <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">6</span> Strengths and Limitations</a></li>
-  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">7</span> Conclusion</a></li>
+  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">5</span> Discussion</a>
+  <ul class="collapse">
+  <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">5.1</span> Strengths and Limitations</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -218,25 +222,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<section id="sec-loadLibraries" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="sec-loadLibraries"><span class="header-section-number">0.1</span> Load Libraries</h2>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nflreadr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>) </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"psych"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"DescTools"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"psych"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"GGally"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggridges"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"nflreadr"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/home/runner/work/FantasyFootballBlogPaul/FantasyFootballBlogPaul/posts/1023 ovnik"</code></pre>
 </div>
+</div>
+</section>
+<section id="sec-aiDisclosure" class="level2" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="sec-aiDisclosure"><span class="header-section-number">0.2</span> AI Disclosure</h2>
+<p>AI Disclosure: AI was not used for this project.</p>
+</section>
 <section id="sec-abstract" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Abstract</h1>
-<p>Does a QBs performance drop as they age? Using data online found, I conducted a linear regression analysis and noticed that age does indeed hinder a QBs passer rating, which can correlate to lower fantasy scores.</p>
+<p>Many fantasy managers often rely on the set projections to decide to start or sit a player. How accurate are these predictions? I used a simulation of NFL data to see if a model could predict whether or not a player can score or not. The results of this finding can indicate if players with higher projections lead to scores, and can help us become aware of our own biases and look deeper than projections put out by our fantasy services.</p>
 </section>
 <section id="sec-background" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Background</h1>
-<p>Quarterbacks are often considered the most important position in football. However, the debate continues about how age affects performance. While some quarterbacks, such as Tom Brady and Aaron Rodgers, have maintained elite performance into their late 30s and 40s, while others decline much earlier. Understanding the relationship between age and performance can help with fantasy draft decisions greatly.</p>
-<section id="sec-background" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="sec-background"><span class="header-section-number">2.1</span> Hypothesis and Prediction</h2>
-<p>The big question is: Does a QB’s performance, as measured by passer rating, significantly decline with age?</p>
-<p>My hypothesis is that a QB’s age is negatively correlated with age. My prediction is that QB’s older than 30 will, on average, have significantly lower passer ratings compared to those under 30.</p>
+<p>Setting a weekly lineup can take zero hesitation or it can be incredibly important. However, it all comes down to whether or not the player performs. The forecasts of each player are often labeled under their projected stat line of that certain game; all based on score probability, yardage probability, or catch probability. By comparing these predictions to actual results, interpreting projections and avoiding biases in certain players can help you set a better lineup!</p>
+<section id="hypothesis-and-prediction" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="hypothesis-and-prediction"><span class="header-section-number">2.1</span> Hypothesis and prediction</h2>
+<p>The Question is: How accurately can fantasy football projections predict whether a player scores in a certain week or not.</p>
+<p>My hypothesis is that players with a higher projection will score at a higher rate than those who do not, but not in every circumstance.</p>
 </section>
 </section>
 <section id="sec-method" class="level1" data-number="3">
@@ -244,72 +273,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>qb_season <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">player_name =</span> <span class="fu">paste</span>(<span class="st">"QB"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">sample</span>(<span class="dv">22</span><span class="sc">:</span><span class="dv">40</span>, <span class="dv">50</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">passer_rating =</span> <span class="fu">round</span>(<span class="dv">95</span> <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> age <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">50</span>, <span class="dv">0</span>, <span class="dv">5</span>), <span class="dv">1</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(qb_season)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>player <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Player1"</span>,<span class="st">"Player2"</span>,<span class="st">"Player3"</span>,<span class="st">"Player4"</span>,<span class="st">"Player5"</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Player6"</span>,<span class="st">"Player7"</span>,<span class="st">"Player8"</span>,<span class="st">"Player9"</span>,<span class="st">"Player10"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>projected_points <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">13</span>, <span class="dv">4</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>touchdown <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>fantasy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(player, projected_points, touchdown)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># View the data</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>fantasy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["player_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["age"],"name":[2],"type":["int"],"align":["right"]},{"label":["passer_rating"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"QB 1","2":"36","3":"72.3"},{"1":"QB 2","2":"40","3":"77.0"},{"1":"QB 3","2":"35","3":"79.5"},{"1":"QB 4","2":"24","3":"78.6"},{"1":"QB 5","2":"31","3":"72.9"},{"1":"QB 6","2":"39","3":"75.6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["player"],"name":[1],"type":["chr"],"align":["left"]},{"label":["projected_points"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["touchdown"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Player1","2":"8","3":"0"},{"1":"Player2","2":"12","3":"0"},{"1":"Player3","2":"15","3":"1"},{"1":"Player4","2":"10","3":"0"},{"1":"Player5","2":"18","3":"1"},{"1":"Player6","2":"20","3":"1"},{"1":"Player7","2":"14","3":"0"},{"1":"Player8","2":"16","3":"1"},{"1":"Player9","2":"13","3":"1"},{"1":"Player10","2":"4","3":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(qb_season<span class="sc">$</span>age)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  22.00   28.00   31.00   31.34   35.00   40.00 </code></pre>
-</div>
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(qb_season<span class="sc">$</span>passer_rating)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  69.80   76.53   78.10   78.93   81.00   93.20 </code></pre>
-</div>
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(passer_rating <span class="sc">~</span> age, <span class="at">data =</span> qb_season)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = passer_rating ~ age, data = qb_season)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--6.8008 -3.3811 -0.6664  2.6561 10.6304 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  96.9134     4.0195  24.111  &lt; 2e-16 ***
-age          -0.5738     0.1268  -4.525 3.98e-05 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 4.257 on 48 degrees of freedom
-Multiple R-squared:  0.299, Adjusted R-squared:  0.2844 
-F-statistic: 20.47 on 1 and 48 DF,  p-value: 3.984e-05</code></pre>
-</div>
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>qb_season <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> passer_rating)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"QB Age vs. Passer Rating"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age"</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Passer Rating"</span>) <span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple scatterplot</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fantasy, <span class="fu">aes</span>(<span class="at">x =</span> projected_points, <span class="at">y =</span> touchdown)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Fantasy Football: Projected Points vs. Touchdowns"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Projected Fantasy Points"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Touchdown"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -325,23 +318,19 @@ F-statistic: 20.47 on 1 and 48 DF,  p-value: 3.984e-05</code></pre>
 </section>
 <section id="sec-results" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Results</h1>
-<p>The stats are based on all QB’s in the NFL from 2015 to this current season. Passer ratings ranged from 60.2 to 121.7. After looking at the data, it showed me that age was a negative predictor of passer ratings.</p>
+<p>In this experiment, I created 10 random players with random point projections, and either a 1 or a 0 if they score a touchdown or not.The scatter plot shows that on average, players with a higher point projection will score more. Although there are some outliers of course, the higher point projection will often lead to more touchdowns. This can really highlight the fact that fantasy is very unpredictable.</p>
 </section>
 <section id="sec-discussion" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Discussion</h1>
-<p>These results support the hypothesis that passer rating does decline with age. On average, each added year of age was correlated with a 0.42 QBR point decrease. While it is a little dock, it is still statistically significant in performance.</p>
-</section>
-<section id="sec-strengthsLimitations" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Strengths and Limitations</h1>
-<p>Some strengths of this included using actual NFL data recorded, as the regression model provided a clear depiction of every QB and every QBR perfectly listed. Some limitations included the fact that passer ratings may not perfectly collect all QB performance data, and the fact that some elite QBs, such as Tom Brady and Aaron Rodgers stay elite longer in comparison to aging backup QBs.</p>
-</section>
-<section id="sec-conclusion" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Conclusion</h1>
-<p>In conclusion, QB performance and age show a drop in passer rating and QBR. These findings can contribute to the debate that QB age and passer rating can negatively affect an older QBs fantasy season as well as their stats.</p>
+<p>I believe that my hypothesis was supported; higher projected points can predict higher odds of scoring. Although touchdowns are unpredictable, the accuracy is of course limited. This can support the fact that projections are more of a guide, not a certainty.</p>
+<section id="sec-strengthsLimitations" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="sec-strengthsLimitations"><span class="header-section-number">5.1</span> Strengths and Limitations</h2>
+<p>Some strengths about this study was that the hypothesis was indeed supported.Some negatives include that this data was purely simulated and didn’t use real players. ## Conclusion {#sec-conclusion}</p>
+<p>In conclusion, higher projections certainly point to higher odds of scoring touchdowns. In reality, fantasy projections, no matter who they came from, are never ever perfect. It is better to use these projections as more of a guide, and not completely certain of happening. It is better to do your own research and decide who has the best chances of creating the most upside that week.</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.1 (2025-06-13)
@@ -365,35 +354,41 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] petersenlab_1.2.0 nflreadr_1.5.0    lubridate_1.9.4   forcats_1.0.1    
- [5] stringr_1.5.2     dplyr_1.1.4       purrr_1.1.0       readr_2.1.5      
- [9] tidyr_1.3.1       tibble_3.3.0      ggplot2_4.0.0     tidyverse_2.0.0  
+ [1] nflreadr_1.5.0    lubridate_1.9.4   forcats_1.0.1     stringr_1.5.2    
+ [5] dplyr_1.1.4       purrr_1.1.0       readr_2.1.5       tidyr_1.3.1      
+ [9] tibble_3.3.0      tidyverse_2.0.0   ggridges_0.5.7    GGally_2.4.0     
+[13] ggplot2_4.0.0     DescTools_0.99.60 psych_2.5.6       petersenlab_1.2.0
 
 loaded via a namespace (and not attached):
- [1] tidyselect_1.2.1   psych_2.5.6        viridisLite_0.4.2  farver_2.1.2      
- [5] S7_0.2.0           fastmap_1.2.0      digest_0.6.37      rpart_4.1.24      
- [9] timechange_0.3.0   lifecycle_1.0.4    cluster_2.1.8.1    magrittr_2.0.4    
-[13] compiler_4.5.1     rlang_1.1.6        Hmisc_5.2-4        tools_4.5.1       
-[17] yaml_2.3.10        data.table_1.17.8  knitr_1.50         labeling_0.4.3    
-[21] htmlwidgets_1.6.4  mnormt_2.1.1       plyr_1.8.9         RColorBrewer_1.1-3
-[25] withr_3.0.2        foreign_0.8-90     nnet_7.3-20        grid_4.5.1        
-[29] stats4_4.5.1       lavaan_0.6-20      xtable_1.8-4       colorspace_2.1-2  
-[33] scales_1.4.0       MASS_7.3-65        cli_3.6.5          mvtnorm_1.3-3     
-[37] rmarkdown_2.30     reformulas_0.4.1   generics_0.1.4     rstudioapi_0.17.1 
-[41] reshape2_1.4.4     tzdb_0.5.0         minqa_1.2.8        DBI_1.2.3         
-[45] cachem_1.1.0       splines_4.5.1      parallel_4.5.1     base64enc_0.1-3   
-[49] mitools_2.4        vctrs_0.6.5        boot_1.3-31        Matrix_1.7-3      
-[53] jsonlite_2.0.0     hms_1.1.4          Formula_1.2-5      htmlTable_2.4.3   
-[57] glue_1.8.0         nloptr_2.2.1       stringi_1.8.7      gtable_0.3.6      
-[61] quadprog_1.5-8     lme4_1.1-37        pillar_1.11.1      htmltools_0.5.8.1 
-[65] R6_2.6.1           Rdpack_2.6.4       mix_1.0-13         evaluate_1.0.5    
-[69] pbivnorm_0.6.0     lattice_0.22-7     rbibutils_2.3      backports_1.5.0   
-[73] memoise_2.0.1      Rcpp_1.1.0         gridExtra_2.3      nlme_3.1-168      
-[77] checkmate_2.3.3    mgcv_1.9-3         xfun_0.53          pkgconfig_2.0.3   </code></pre>
+ [1] Rdpack_2.6.4       DBI_1.2.3          mnormt_2.1.1       gridExtra_2.3     
+ [5] gld_2.6.8          readxl_1.4.5       rlang_1.1.6        magrittr_2.0.4    
+ [9] e1071_1.7-16       compiler_4.5.1     mgcv_1.9-3         vctrs_0.6.5       
+[13] reshape2_1.4.4     quadprog_1.5-8     pkgconfig_2.0.3    fastmap_1.2.0     
+[17] backports_1.5.0    labeling_0.4.3     pbivnorm_0.6.0     rmarkdown_2.30    
+[21] tzdb_0.5.0         haven_2.5.5        nloptr_2.2.1       xfun_0.53         
+[25] cachem_1.1.0       jsonlite_2.0.0     parallel_4.5.1     lavaan_0.6-20     
+[29] cluster_2.1.8.1    R6_2.6.1           stringi_1.8.7      RColorBrewer_1.1-3
+[33] boot_1.3-31        rpart_4.1.24       cellranger_1.1.0   Rcpp_1.1.0        
+[37] knitr_1.50         base64enc_0.1-3    Matrix_1.7-3       splines_4.5.1     
+[41] nnet_7.3-20        timechange_0.3.0   tidyselect_1.2.1   rstudioapi_0.17.1 
+[45] yaml_2.3.10        lattice_0.22-7     plyr_1.8.9         withr_3.0.2       
+[49] S7_0.2.0           evaluate_1.0.5     foreign_0.8-90     ggstats_0.11.0    
+[53] proxy_0.4-27       pillar_1.11.1      checkmate_2.3.3    stats4_4.5.1      
+[57] reformulas_0.4.1   generics_0.1.4     mix_1.0-13         hms_1.1.4         
+[61] scales_1.4.0       rootSolve_1.8.2.4  minqa_1.2.8        xtable_1.8-4      
+[65] class_7.3-23       glue_1.8.0         Hmisc_5.2-4        lmom_3.2          
+[69] tools_4.5.1        data.table_1.17.8  lme4_1.1-37        Exact_3.3         
+[73] fs_1.6.6           mvtnorm_1.3-3      grid_4.5.1         mitools_2.4       
+[77] rbibutils_2.3      colorspace_2.1-2   nlme_3.1-168       htmlTable_2.4.3   
+[81] Formula_1.2-5      cli_3.6.5          expm_1.0-0         viridisLite_0.4.2 
+[85] gtable_0.3.6       digest_0.6.37      htmlwidgets_1.6.4  farver_2.1.2      
+[89] memoise_2.0.1      htmltools_0.5.8.1  lifecycle_1.0.4    httr_1.4.7        
+[93] MASS_7.3-65       </code></pre>
 </div>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
