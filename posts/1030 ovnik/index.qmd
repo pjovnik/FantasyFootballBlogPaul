@@ -1,0 +1,100 @@
+---
+title: "Prediction Accuracy in Fantasy Football"
+author: "Paul Ovnik"
+date: "10/30/2025"
+categories: [abstract,aiDisclosure, background, method, results, discussion,strengthslimitations, conclusion]
+---
+
+## Load Libraries {#sec-loadLibraries}
+
+```{r}
+#| message: false
+#| warning: false
+
+library("petersenlab") #located here: https://github.com/DevPsyLab/petersenlab
+library("petersenlab")
+library("XICOR")
+library("psych")
+library("DescTools")
+library("psych")
+library("correlation")
+library("effectsize")
+library("GGally")
+library("ggridges")
+library("tidyverse")
+library("nflreadr")
+library("dplyr")
+library("ggplot2")
+
+getwd(
+  
+
+)
+
+```
+
+## AI Disclosure {#sec-aiDisclosure}
+
+AI Disclosure: AI was not used for this project.
+
+
+# Abstract {#sec-abstract}
+For this post, I decided to take a look at how accurate fantasy  player projections really are. I created a small example comparing projected vs. actual fantasy points for all five wide receivers on my fantasy roster this year during week 4. Using a simple plot and some real stats, I checked whether projections tended to overestimate performance. The results show that predictions were not particularly close and slightly too high — showing a bit of overconfidence in the forecasts.
+# Background {#sec-background}
+Fantasy players rely on projections every week to make decisions about who to start or sit. These projections estimate how many points a player will score, but sometimes they can be a little misleading. When predictions are too optimistic, it shows overconfidence — meaning the forecasts act like they’re more certain than they really are. Understanding this helps fantasy managers recognize when to trust the numbers and also when to use some personal judgement
+## Hypothesis and prediction
+Are fantasy football projections accurate, or do they show signs of overconfidence? My hypothesis is that projections will be fairly accurate overall but will slightly over predict actual player performance.
+# Method {#sec-method}
+
+```{r}
+player <- c("Collins", "Wilson", "Chase", "SmithNjigba", "Waddle")
+predicted_points <- c(18.1, 16.6, 14.7, 20.9, 12)
+actual_points <- c(7.9,20.2, 7.3, 13, 7.8  )
+
+fantasy <- data.frame(player, predicted_points, actual_points)
+
+fantasy
+
+mean_pred <- mean(fantasy$predicted_points)
+mean_actual <- mean(fantasy$actual_points)
+correlation <- cor(fantasy$predicted_points, fantasy$actual_points)
+
+mean_pred; mean_actual; correlation
+
+ggplot(fantasy, aes(x = predicted_points, y = actual_points, label = player)) +
+  geom_point(color = "blue", size = 3) +
+  geom_text(vjust = -0.7, size = 3) +
+  geom_smooth(method = "lm", color = "red", se = FALSE) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  labs(
+    title = "Projected vs. Actual Points",
+    x = "Projected Points",
+    y = "Actual Points"
+  ) +
+  theme_minimal()
+
+
+
+
+```
+
+# Results {#sec-results}
+
+The average predicted score was 16.46 points, and the average actual score was 11.24 points, meaning the projections were about 5 points too high on average.
+
+The correlation between predicted and actual points was 0.66, showing that the projections were not strongly related to real results, showing that experts and analysts were slightly too optimistic. a majority of the points fell below the dashed line in the graph, which means projections overestimated actual outcomes.
+
+# Discussion {#sec-discussion}
+The results somewhat supported the hypothesis: projections were not totally accurate, and showed overconfidence by predicting higher scores than what players actually achieved.In fantasy this happens a decent amount, because models often assume players will perform at their average or best, ignoring bad match ups,weather, or important injuries. It shows why fantasy managers shouldn’t rely on projections alone when making lineup choices.
+
+## Strengths and Limitations {#sec-strengthsLimitations}
+Some strengths of this experiment was that the hypothesis was somewhat supported and that the data and correlation matched up correctly. Some negatives include that this was a smaller sample size, only wide receivers, and that projections can't always predict weather conditions, important injuries, or match ups 100% of the time correctly.
+
+## Conclusion {#sec-conclusion}
+
+In conclusion, fantasy projections are usually close but a little too confident. While they’re helpful for making decisions, players should remember that football is unpredictable,and that numbers don’t tell the whole story. It is always best to use your own personal judgement along with projections given out by experts and fantasy services.
+
+
+```{r}
+sessionInfo()
+```
