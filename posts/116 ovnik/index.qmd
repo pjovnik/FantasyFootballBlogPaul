@@ -1,5 +1,98 @@
 ---
-title: "index"
-format: html
+title: "Predicting Wide Receiver Fantasy Points with Machine Learning"
+author: "Paul Ovnik"
+date: "11/06/2025"
+categories: [abstract,aiDisclosure, background,  hypothesisandprediction, method, results, discussion,strengthslimitations, conclusion]
 ---
 
+## Load Libraries {#sec-loadLibraries}
+
+```{r}
+#| message: false
+#| warning: false
+
+library("petersenlab") #located here: https://github.com/DevPsyLab/petersenlab
+library("petersenlab")
+library("XICOR")
+library("psych")
+library("DescTools")
+library("psych")
+library("correlation")
+library("effectsize")
+library("GGally")
+library("ggridges")
+library("tidyverse")
+library(nflreadr)
+library(dplyr)
+library(ggplot2)
+
+getwd(
+  
+
+)
+
+```
+
+## AI Disclosure {#sec-aiDisclosure}
+
+AI Disclosure: AI was not used for this project.
+
+
+# Abstract {#sec-abstract}
+This week, I decided to explore how basic receiving statistics can be used to predict fantasy football performance among NFL wide receivers. Using real 2023 data from NFLverse, a simple linear regression model was built to estimate fantasy points based on targets, receiving yards, and touchdowns. The model showed a strong correlation between predicted and actual fantasy points, suggesting that even basic stats can help forecast wide receiver performance. These findings can help fantasy managers make smarter roster decisions using data-driven methods.
+
+# Background {#sec-background}
+Fantasy football managers rely heavily on projections to set lineups each week, but projections often miss due to player inconsistency or a multitude of other reasons. By using real NFL data, we can assess how well simple offensive metrics like targets and yards predict fantasy points,helping fantasy players understand which stats truly matter.
+
+# Hypothesis and prediction {#sec-hypothesisandprediction}
+My hypothesis is that wide receivers with higher target volume, receiving yards, and receiving touchdowns will have higher fantasy point totals.My prediction is that there will be a strong positive correlation between predicted and actual fantasy points.
+
+## Justification {#sec-hypothesisandprediction}
+According to the textbook, volume statistics are consistently strong indicators of fantasy success. These variables have a direct impact on scoring and tend to reflect both player skill and opportunity, which are key factors in fantasy predictions.
+
+# Method {#sec-method}
+
+```{r}
+wr_stats <- load_player_stats(seasons = 2023, summary_level = "week") %>%
+  filter(position == "WR", !is.na(fantasy_points_ppr)) %>%
+  select(player_display_name, week, targets, receiving_yards, receiving_tds, fantasy_points_ppr)
+
+model <- lm(fantasy_points_ppr ~ targets + receiving_yards + receiving_tds, data = wr_stats)
+
+wr_stats <- wr_stats %>%
+  mutate(predicted_points = predict(model, wr_stats))
+
+correlation <- cor(wr_stats$predicted_points, wr_stats$fantasy_points_ppr)
+cat("Correlation between predicted and actual fantasy points:", correlation, "\n")
+
+ggplot(wr_stats, aes(x = predicted_points, y = fantasy_points_ppr)) +
+  geom_point(alpha = 0.5, color = "blue") +
+  geom_smooth(method = "lm", color = "red") +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  labs(
+    title = "Predicted vs. Actual Fantasy Points for Wide Receivers (2023)",
+
+    x = "Predicted Fantasy Points",
+    y = "Actual Fantasy Points"
+  ) +
+  theme_minimal()
+```
+
+# Results {#sec-results}
+
+The linear regression results showed a strong positive relationship between targets, receiving yards, touchdowns, and fantasy points. About 78% of the variation in wide receiver fantasy performance can be explained by these variables.The plot shows a clear upward trend, although a few outliers exist,usually WRs with unusual touchdown efficiency or minimal targets but long scoring plays.
+
+# Discussion {#sec-discussion}
+The findings confirm my hypothesis that higher target volume and production predict fantasy success. In fantasy terms, this means opportunity matters more than hype;wide receivers who consistently earn targets and produce yards are more predictable fantasy assets.
+
+## Strengths and Limitations {#sec-strengthsLimitations}
+Some strengths of this include that the model explained roughly 78% of the variation in fantasy performance. It also directly aligns with fantasy scoring rules, making the findings immediately applicable to fantasy football strategies. Some limitations include the fact that the model does not include several key predictors of fantasy performance, such as air yards, receptions, offensive snaps, quarterback quality, or defensive match up difficulty. This also includes the fact that linear regression assumes that the relationship between predictors and fantasy points is linear, but in reality, performance can have nonlinear effects.
+
+## Conclusion {#sec-conclusion}
+
+In conclusion, This study shows that machine learning can meaningfully predict wide receiver fantasy football performance. Fantasy players should focus on players with consistent targets and yardage, as these are reliable indicators of future success.Future research could improve prediction accuracy by including additional variables like air yards, target depth, and team passing volume.
+
+
+```{r}
+sessionInfo()
+```
