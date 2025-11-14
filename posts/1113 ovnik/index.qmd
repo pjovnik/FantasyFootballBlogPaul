@@ -1,5 +1,96 @@
 ---
-title: "index"
-format: html
+title: "Finding Running Back Archetypes via Cluster Analysis"
+author: "Paul Ovnik"
+date: "11/13/2025"
+categories: [abstract,aiDisclosure, background,  hypothesisandprediction, method, results, discussion,strengthslimitations, conclusion]
 ---
 
+## Load Libraries {#sec-loadLibraries}
+
+```{r}
+#| message: false
+#| warning: false
+
+library("petersenlab") #located here: https://github.com/DevPsyLab/petersenlab
+library("petersenlab")
+library("XICOR")
+library("psych")
+library("DescTools")
+library("psych")
+library("correlation")
+library("effectsize")
+library("GGally")
+library("ggridges")
+library(tidyverse)
+library(nflreadr)
+library(ggplot2)
+
+getwd(
+  
+
+)
+
+```
+
+## AI Disclosure {#sec-aiDisclosure}
+
+AI Disclosure: AI was not used for this project.
+
+
+# Abstract {#sec-abstract}
+This week, I used cluster analysis to see whether running backs could form groups based on rushing EPA, receiving yards, touchdowns, and fantasy points. After using NFL season data, four clear clusters appeared. These clusters represented different player “types,” such as workhorse,committee, and receiving backs. Overall, the results suggest that cluster analysis can help fantasy managers see patterns they might miss and make better decisions.
+
+# Background {#sec-background}
+Fantasy can be very confusing because every player has a different style, usage, and role on their own respective teams.One stat line never tells the whole story. Cluster analysis can be very helpful,because it lets us find patterns that aren't obvious just from watching games or looking at box scores. In the textbook, it states that “the goal of cluster analysis is to identify distinguishable subgroups" and that "people within a subgroup are expected to be more similar to each other than they are to people in other subgroups.”
+
+# Hypothesis and prediction {#sec-hypothesisandprediction}
+My hypothesis is that rb's will naturally fall into groups based on how they produce fantasy points. I think that there will be 3–5 clear groups of players that match real fantasy “types,” such as elite players, flex players, and pass-catching players.
+
+## Justification {#sec-hypothesisandprediction}
+According to the textbook, Fantasy players differ a lot in how they’re used, and research shows that players often fall into consistent roles based on a combination of usage and production. Because cluster analysis groups players by statistical similarity, it should identify these roles automatically.
+
+# Method {#sec-method}
+
+```{r}
+
+data <- load_player_stats(seasons = 2023)
+
+rb_stats <- data %>%
+filter(position == "RB") %>%
+group_by(player_id, player_name) %>%
+summarise(
+rush_epa = sum(rushing_epa, na.rm = TRUE),
+targets = sum(targets, na.rm = TRUE),
+rush_yds = sum(rushing_yards, na.rm = TRUE),
+rec_yds = sum(receiving_yards, na.rm = TRUE),
+fantasy_points_ppr = sum(fantasy_points_ppr, na.rm = TRUE)
+) %>%
+ungroup()
+scaled <- scale(rb_stats[, c("rush_epa", "targets", "rush_yds", "rec_yds", "fantasy_points_ppr")])
+set.seed(123)
+k3 <- kmeans(scaled, centers = 3, nstart = 25)
+rb_stats$cluster <- as.factor(k3$cluster)
+library(ggplot2)
+ggplot(rb_stats, aes(x = rush_epa, y = fantasy_points_ppr, color = cluster)) +
+geom_point(size = 0.5) +
+labs(title = "RB Clusters Based on Usage and Production",
+x = "Expected Points on Average", y = "Fantasy Points")
+```
+
+# Results {#sec-results}
+The clusters showed three distinct groups: workhorse, receiving backs, and committee backs.
+
+# Discussion {#sec-discussion}
+My analysis shows that clustering successfully identifies familiar player archetypes. The presence of three big groups aligns with common analyst frameworks. However, different explanations exist. For example, team context, such as offensive schemes may drive clustering patterns rather than actual player skill.
+
+## Strengths and Limitations {#sec-strengthsLimitations}
+Some strengths of this include that the model explained the three groups properly and clearly to see. It also directly aligns with fantasy scoring rules, making the findings immediately applicable to fantasy football strategies. Some limitations include the fact that the model does not include injury histories or snap counts. This can heavily impact data, as injuries and committee usages are very important factors.
+
+## Conclusion {#sec-conclusion}
+
+In conclusion,cluster analysis was a great method for identifying running back archetypes based on real statistical patterns. This approach can help managers evaluate players more objectively and identify undervalued roles during drafts. 
+
+
+```{r}
+sessionInfo()
+```
