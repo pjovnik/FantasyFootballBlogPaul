@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Paul Ovnik">
+<meta name="dcterms.date" content="2025-11-13">
 
-<title>index – My Blog</title>
+<title>Finding Running Back Archetypes via Cluster Analysis – My Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -68,6 +105,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -115,14 +154,37 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">index</h1>
-                      </div>
+      <h1 class="title">Finding Running Back Archetypes via Cluster Analysis</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">abstract</div>
+                <div class="quarto-category">aiDisclosure</div>
+                <div class="quarto-category">background</div>
+                <div class="quarto-category">hypothesisandprediction</div>
+                <div class="quarto-category">method</div>
+                <div class="quarto-category">results</div>
+                <div class="quarto-category">discussion</div>
+                <div class="quarto-category">strengthslimitations</div>
+                <div class="quarto-category">conclusion</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Paul Ovnik </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 13, 2025</p>
+      </div>
+    </div>
     
       
     </div>
@@ -131,8 +193,28 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-loadLibraries" id="toc-sec-loadLibraries" class="nav-link active" data-scroll-target="#sec-loadLibraries"><span class="header-section-number">0.1</span> Load Libraries</a></li>
+  <li><a href="#sec-aiDisclosure" id="toc-sec-aiDisclosure" class="nav-link" data-scroll-target="#sec-aiDisclosure"><span class="header-section-number">0.2</span> AI Disclosure</a></li>
+  <li><a href="#sec-abstract" id="toc-sec-abstract" class="nav-link" data-scroll-target="#sec-abstract"><span class="header-section-number">1</span> Abstract</a></li>
+  <li><a href="#sec-background" id="toc-sec-background" class="nav-link" data-scroll-target="#sec-background"><span class="header-section-number">2</span> Background</a></li>
+  <li><a href="#sec-hypothesisandprediction" id="toc-sec-hypothesisandprediction" class="nav-link" data-scroll-target="#sec-hypothesisandprediction"><span class="header-section-number">3</span> Hypothesis and prediction</a>
+  <ul class="collapse">
+  <li><a href="#sec-hypothesisandprediction" id="toc-sec-hypothesisandprediction" class="nav-link" data-scroll-target="#sec-hypothesisandprediction"><span class="header-section-number">3.1</span> Justification</a></li>
+  </ul></li>
+  <li><a href="#sec-method" id="toc-sec-method" class="nav-link" data-scroll-target="#sec-method"><span class="header-section-number">4</span> Method</a></li>
+  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">5</span> Results</a></li>
+  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">6</span> Discussion</a>
+  <ul class="collapse">
+  <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">6.1</span> Strengths and Limitations</a></li>
+  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">6.2</span> Conclusion</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -141,8 +223,190 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="sec-loadLibraries" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="sec-loadLibraries"><span class="header-section-number">0.1</span> Load Libraries</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>) <span class="co">#located here: https://github.com/DevPsyLab/petersenlab</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"petersenlab"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"XICOR"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"psych"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"DescTools"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"psych"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"correlation"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"effectsize"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"GGally"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggridges"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nflreadr)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "/home/runner/work/FantasyFootballBlogPaul/FantasyFootballBlogPaul/posts/1113 ovnik"</code></pre>
+</div>
+</div>
+</section>
+<section id="sec-aiDisclosure" class="level2" data-number="0.2">
+<h2 data-number="0.2" class="anchored" data-anchor-id="sec-aiDisclosure"><span class="header-section-number">0.2</span> AI Disclosure</h2>
+<p>AI Disclosure: AI was not used for this project.</p>
+</section>
+<section id="sec-abstract" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Abstract</h1>
+<p>This week, I used cluster analysis to see whether running backs could form groups based on rushing EPA, receiving yards, touchdowns, and fantasy points. After using NFL season data, four clear clusters appeared. These clusters represented different player “types,” such as workhorse,committee, and receiving backs. Overall, the results suggest that cluster analysis can help fantasy managers see patterns they might miss and make better decisions.</p>
+</section>
+<section id="sec-background" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Background</h1>
+<p>Fantasy can be very confusing because every player has a different style, usage, and role on their own respective teams.One stat line never tells the whole story. Cluster analysis can be very helpful,because it lets us find patterns that aren’t obvious just from watching games or looking at box scores. In the textbook, it states that “the goal of cluster analysis is to identify distinguishable subgroups” and that “people within a subgroup are expected to be more similar to each other than they are to people in other subgroups.”</p>
+</section>
+<section id="sec-hypothesisandprediction" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Hypothesis and prediction</h1>
+<p>My hypothesis is that rb’s will naturally fall into groups based on how they produce fantasy points. I think that there will be 3–5 clear groups of players that match real fantasy “types,” such as elite players, flex players, and pass-catching players.</p>
+<section id="sec-hypothesisandprediction" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-hypothesisandprediction"><span class="header-section-number">3.1</span> Justification</h2>
+<p>According to the textbook, Fantasy players differ a lot in how they’re used, and research shows that players often fall into consistent roles based on a combination of usage and production. Because cluster analysis groups players by statistical similarity, it should identify these roles automatically.</p>
+</section>
+</section>
+<section id="sec-method" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Method</h1>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">load_player_stats</span>(<span class="at">seasons =</span> <span class="dv">2023</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rb_stats <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(position <span class="sc">==</span> <span class="st">"RB"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(player_id, player_name) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">rush_epa =</span> <span class="fu">sum</span>(rushing_epa, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="at">targets =</span> <span class="fu">sum</span>(targets, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">rush_yds =</span> <span class="fu">sum</span>(rushing_yards, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">rec_yds =</span> <span class="fu">sum</span>(receiving_yards, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="at">fantasy_points_ppr =</span> <span class="fu">sum</span>(fantasy_points_ppr, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'player_id'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>scaled <span class="ot">&lt;-</span> <span class="fu">scale</span>(rb_stats[, <span class="fu">c</span>(<span class="st">"rush_epa"</span>, <span class="st">"targets"</span>, <span class="st">"rush_yds"</span>, <span class="st">"rec_yds"</span>, <span class="st">"fantasy_points_ppr"</span>)])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(scaled, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>rb_stats<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(k3<span class="sc">$</span>cluster)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rb_stats, <span class="fu">aes</span>(<span class="at">x =</span> rush_epa, <span class="at">y =</span> fantasy_points_ppr, <span class="at">color =</span> cluster)) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"RB Clusters Based on Usage and Production"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="at">x =</span> <span class="st">"Expected Points on Average"</span>, <span class="at">y =</span> <span class="st">"Fantasy Points"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-results" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Results</h1>
+<p>The clusters showed three distinct groups: workhorse, receiving backs, and committee backs.</p>
+</section>
+<section id="sec-discussion" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Discussion</h1>
+<p>My analysis shows that clustering successfully identifies familiar player archetypes. The presence of three big groups aligns with common analyst frameworks. However, different explanations exist. For example, team context, such as offensive schemes may drive clustering patterns rather than actual player skill.</p>
+<section id="sec-strengthsLimitations" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="sec-strengthsLimitations"><span class="header-section-number">6.1</span> Strengths and Limitations</h2>
+<p>Some strengths of this include that the model explained the three groups properly and clearly to see. It also directly aligns with fantasy scoring rules, making the findings immediately applicable to fantasy football strategies. Some limitations include the fact that the model does not include injury histories or snap counts. This can heavily impact data, as injuries and committee usages are very important factors.</p>
+</section>
+<section id="sec-conclusion" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">6.2</span> Conclusion</h2>
+<p>In conclusion,cluster analysis was a great method for identifying running back archetypes based on real statistical patterns. This approach can help managers evaluate players more objectively and identify undervalued roles during drafts.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.5.2 (2025-10-31)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.3 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] nflreadr_1.5.0    lubridate_1.9.4   forcats_1.0.1     stringr_1.6.0    
+ [5] dplyr_1.1.4       purrr_1.2.0       readr_2.1.5       tidyr_1.3.1      
+ [9] tibble_3.3.0      tidyverse_2.0.0   ggridges_0.5.7    GGally_2.4.0     
+[13] ggplot2_4.0.0     effectsize_1.0.1  correlation_0.8.8 DescTools_0.99.60
+[17] psych_2.5.6       XICOR_0.4.1       petersenlab_1.2.1
+
+loaded via a namespace (and not attached):
+  [1] Rdpack_2.6.4        DBI_1.2.3           mnormt_2.1.1       
+  [4] gridExtra_2.3       gld_2.6.8           sandwich_3.1-1     
+  [7] readxl_1.4.5        rlang_1.1.6         magrittr_2.0.4     
+ [10] multcomp_1.4-29     e1071_1.7-16        compiler_4.5.2     
+ [13] vctrs_0.6.5         reshape2_1.4.5      quadprog_1.5-8     
+ [16] pkgconfig_2.0.3     fastmap_1.2.0       backports_1.5.0    
+ [19] labeling_0.4.3      pbivnorm_0.6.0      rmarkdown_2.30     
+ [22] psychTools_2.5.7.22 tzdb_0.5.0          haven_2.5.5        
+ [25] nloptr_2.2.1        xfun_0.54           cachem_1.1.0       
+ [28] jsonlite_2.0.0      parallel_4.5.2      lavaan_0.6-20      
+ [31] cluster_2.1.8.1     R6_2.6.1            stringi_1.8.7      
+ [34] RColorBrewer_1.1-3  boot_1.3-32         rpart_4.1.24       
+ [37] estimability_1.5.1  cellranger_1.1.0    Rcpp_1.1.0         
+ [40] knitr_1.50          zoo_1.8-14          parameters_0.28.2  
+ [43] base64enc_0.1-3     timechange_0.3.0    Matrix_1.7-4       
+ [46] splines_4.5.2       nnet_7.3-20         tidyselect_1.2.1   
+ [49] rstudioapi_0.17.1   yaml_2.3.10         codetools_0.2-20   
+ [52] lattice_0.22-7      plyr_1.8.9          withr_3.0.2        
+ [55] bayestestR_0.17.0   S7_0.2.0            coda_0.19-4.1      
+ [58] evaluate_1.0.5      foreign_0.8-90      survival_3.8-3     
+ [61] ggstats_0.11.0      proxy_0.4-27        pillar_1.11.1      
+ [64] checkmate_2.3.3     rtf_0.4-14.1        stats4_4.5.2       
+ [67] reformulas_0.4.2    insight_1.4.2       generics_0.1.4     
+ [70] mix_1.0-13          hms_1.1.4           scales_1.4.0       
+ [73] rootSolve_1.8.2.4   minqa_1.2.8         xtable_1.8-4       
+ [76] class_7.3-23        glue_1.8.0          emmeans_2.0.0      
+ [79] Hmisc_5.2-4         lmom_3.2            tools_4.5.2        
+ [82] data.table_1.17.8   lme4_1.1-37         Exact_3.3          
+ [85] fs_1.6.6            mvtnorm_1.3-3       grid_4.5.2         
+ [88] mitools_2.4         rbibutils_2.4       datawizard_1.3.0   
+ [91] colorspace_2.1-2    nlme_3.1-168        htmlTable_2.4.3    
+ [94] Formula_1.2-5       cli_3.6.5           expm_1.0-0         
+ [97] viridisLite_0.4.2   gtable_0.3.6        R.methodsS3_1.8.2  
+[100] digest_0.6.38       TH.data_1.1-4       htmlwidgets_1.6.4  
+[103] farver_2.1.2        memoise_2.0.1       htmltools_0.5.8.1  
+[106] R.oo_1.27.1         lifecycle_1.0.4     httr_1.4.7         
+[109] MASS_7.3-65        </code></pre>
+</div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
