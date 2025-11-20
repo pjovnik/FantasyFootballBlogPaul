@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Paul Ovnik">
-<meta name="dcterms.date" content="2025-11-06">
+<meta name="dcterms.date" content="2025-11-20">
 
 <title>Predicting Wide Receiver Fantasy Points with Machine Learning – My Blog</title>
 <style>
@@ -165,6 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                 <div class="quarto-category">discussion</div>
                 <div class="quarto-category">strengthslimitations</div>
                 <div class="quarto-category">conclusion</div>
+                <div class="quarto-category">citation</div>
               </div>
                   </div>
   </div>
@@ -182,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">November 6, 2025</p>
+        <p class="date">November 20, 2025</p>
       </div>
     </div>
     
@@ -213,6 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">6.1</span> Strengths and Limitations</a></li>
   <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">6.2</span> Conclusion</a></li>
   </ul></li>
+  <li><a href="#sec-citation" id="toc-sec-citation" class="nav-link" data-scroll-target="#sec-citation"><span class="header-section-number">7</span> Citation</a></li>
   </ul>
 </nav>
     </div>
@@ -259,18 +261,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-abstract" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Abstract</h1>
-<p>This week, I decided to explore how basic receiving statistics can be used to predict fantasy football performance among NFL wide receivers. Using real 2023 data from NFLverse, a simple linear regression model was built to estimate fantasy points based on targets, receiving yards, and touchdowns. The model showed a strong correlation between predicted and actual fantasy points, suggesting that even basic stats can help forecast wide receiver performance. These findings can help fantasy managers make smarter roster decisions using data-driven methods.</p>
+<p>Fantasy managers often rely on lots of different stats to evaluate players. However, these metrics usually overlap, making it hard to interpret which factors actually separate good players from bad ones. I chose to use PCA to simplify fantasy metrics into a smaller set of underlying components. Using simulated but realistic offensive player data, PCA revealed two main components: (1) Usage Volume and (2) Efficiency/Scoring Ability. These findings suggest that fantasy player performance can be reduced to a couple of interpretative dimensions, helping managers identify players more clearly.</p>
 </section>
 <section id="sec-background" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Background</h1>
-<p>Fantasy football managers rely heavily on projections to set lineups each week, but projections often miss due to player inconsistency or a multitude of other reasons. By using real NFL data, we can assess how well simple offensive metrics like targets and yards predict fantasy points,helping fantasy players understand which stats truly matter.</p>
+<p>Fantasy involves evaluating many correlated performance metrics. For example, players with more snaps often get more targets and yards, and players with high yards per target tend to score more efficiently. When variables overlap, it becomes difficult to interpret which ones truly matter.PCA is a statistical technique that reduces many correlated variables into a smaller set of uncorrelated components. Understanding the structures of fantasy performance metrics can help managers identify undervalued players by focusing on core factors rather than just statistics.</p>
 </section>
 <section id="sec-hypothesisandprediction" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Hypothesis and prediction</h1>
-<p>My hypothesis is that wide receivers with higher target volume, receiving yards, and receiving touchdowns will have higher fantasy point totals.My prediction is that there will be a strong positive correlation between predicted and actual fantasy points.</p>
+<p>Can PCA identify underlying components of fantasy football performance that meaningfully summarize player roles and value? My hypothesis is that PCA will come up with two major components from offensive player statistics: A usage volume component and an Efficiency/Scoring component.</p>
 <section id="sec-hypothesisandprediction" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="sec-hypothesisandprediction"><span class="header-section-number">3.1</span> Justification</h2>
-<p>According to the textbook, volume statistics are consistently strong indicators of fantasy success. These variables have a direct impact on scoring and tend to reflect both player skill and opportunity, which are key factors in fantasy predictions.</p>
+<p>Prior work in fantasy analytics shows that usage tends to cluster together, while efficiency and scoring correlate separately. PCA should mathematically reveal these patterns by grouping correlated variables.</p>
 </section>
 </section>
 <section id="sec-method" class="level1" data-number="4">
@@ -278,38 +280,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wr_stats <span class="ot">&lt;-</span> <span class="fu">load_player_stats</span>(<span class="at">seasons =</span> <span class="dv">2023</span>, <span class="at">summary_level =</span> <span class="st">"week"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(position <span class="sc">==</span> <span class="st">"WR"</span>, <span class="sc">!</span><span class="fu">is.na</span>(fantasy_points_ppr)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(player_display_name, week, targets, receiving_yards, receiving_tds, fantasy_points_ppr)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(fantasy_points_ppr <span class="sc">~</span> targets <span class="sc">+</span> receiving_yards <span class="sc">+</span> receiving_tds, <span class="at">data =</span> wr_stats)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>wr_stats <span class="ot">&lt;-</span> wr_stats <span class="sc">%&gt;%</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">predicted_points =</span> <span class="fu">predict</span>(model, wr_stats))</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>correlation <span class="ot">&lt;-</span> <span class="fu">cor</span>(wr_stats<span class="sc">$</span>predicted_points, wr_stats<span class="sc">$</span>fantasy_points_ppr)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Correlation between predicted and actual fantasy points:"</span>, correlation, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(ggplot2)) <span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>fantasy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">player =</span> <span class="fu">paste0</span>(<span class="st">"Player"</span>, <span class="dv">1</span><span class="sc">:</span>n),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">targets =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(n, <span class="dv">7</span>, <span class="dv">3</span>)),             <span class="co"># avg 7 targets/g</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">yards_per_target =</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(n, <span class="dv">9</span>, <span class="dv">2</span>), <span class="dv">1</span>), <span class="co"># efficiency</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">touchdowns =</span> <span class="fu">rpois</span>(n, <span class="dv">1</span>),                    <span class="co"># season TDs</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">snap_share =</span> <span class="fu">round</span>(<span class="fu">runif</span>(n, <span class="fl">0.3</span>, <span class="fl">0.9</span>), <span class="dv">2</span>)    <span class="co"># 30–90% snaps</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>fantasy<span class="sc">$</span>targets[fantasy<span class="sc">$</span>targets <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fantasy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Correlation between predicted and actual fantasy points: 0.9841135 </code></pre>
+<pre><code>    player             targets     yards_per_target   touchdowns 
+ Length:30          Min.   : 1.0   Min.   : 5.900   Min.   :0.0  
+ Class :character   1st Qu.: 5.0   1st Qu.: 8.400   1st Qu.:0.0  
+ Mode  :character   Median : 6.5   Median : 9.050   Median :1.0  
+                    Mean   : 6.8   Mean   : 9.353   Mean   :0.9  
+                    3rd Qu.: 8.0   3rd Qu.:10.550   3rd Qu.:1.0  
+                    Max.   :12.0   Max.   :13.300   Max.   :4.0  
+   snap_share    
+ Min.   :0.3700  
+ 1st Qu.:0.5100  
+ Median :0.5850  
+ Mean   :0.5877  
+ 3rd Qu.:0.6775  
+ Max.   :0.8200  </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wr_stats, <span class="fu">aes</span>(<span class="at">x =</span> predicted_points, <span class="at">y =</span> fantasy_points_ppr)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Predicted vs. Actual Fantasy Points for Wide Receivers (2023)"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Predicted Fantasy Points"</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Actual Fantasy Points"</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fantasy_num <span class="ot">&lt;-</span> <span class="fu">scale</span>(fantasy[,<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(fantasy_num)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2    PC3    PC4
+Standard deviation     1.1897 1.0482 0.9281 0.7902
+Proportion of Variance 0.3539 0.2747 0.2153 0.1561
+Cumulative Proportion  0.3539 0.6286 0.8439 1.0000</code></pre>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pca<span class="sc">$</span>rotation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        PC1        PC2       PC3        PC4
+targets           0.6225915 -0.3238035 0.2848525 -0.6529856
+yards_per_target -0.1555756  0.8158931 0.4141905 -0.3722377
+touchdowns        0.6356064  0.2350483 0.3546654  0.6441811
+snap_share       -0.4291627 -0.4173992 0.7883640  0.1417025</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pca_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">player =</span> fantasy<span class="sc">$</span>player,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">PC1 =</span> pca<span class="sc">$</span>x[,<span class="dv">1</span>],</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">PC2 =</span> pca<span class="sc">$</span>x[,<span class="dv">2</span>]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca_df, <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">label =</span> player)) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.6</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Fantasy Football PCA: Player Positions in Component Space"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Principal Component 1"</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Principal Component 2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -317,26 +362,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pca<span class="sc">$</span>rotation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                        PC1        PC2       PC3        PC4
+targets           0.6225915 -0.3238035 0.2848525 -0.6529856
+yards_per_target -0.1555756  0.8158931 0.4141905 -0.3722377
+touchdowns        0.6356064  0.2350483 0.3546654  0.6441811
+snap_share       -0.4291627 -0.4173992 0.7883640  0.1417025</code></pre>
+</div>
 </div>
 </section>
 <section id="sec-results" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Results</h1>
-<p>The linear regression results showed a strong positive relationship between targets, receiving yards, touchdowns, and fantasy points. About 78% of the variation in wide receiver fantasy performance can be explained by these variables.The plot shows a clear upward trend, although a few outliers exist,usually WRs with unusual touchdown efficiency or minimal targets but long scoring plays.</p>
+<p>The PCA produced two dominant components: Usage Volume and Efficiency/Scoring Ability.Usage volume was reflected in targets, snap shares, and touchdowns. This showed how heavy of a workload that players will get. Efficiency was shown through high yards per catch and touchdown statistics.</p>
 </section>
 <section id="sec-discussion" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Discussion</h1>
-<p>The findings confirm my hypothesis that higher target volume and production predict fantasy success. In fantasy terms, this means opportunity matters more than hype;wide receivers who consistently earn targets and produce yards are more predictable fantasy assets.</p>
+<p>The findings support the hypothesis: Volume and efficiency were the two factors that stood out. This matches theoretical expectations that fantasy performance is driven by both opportunity and effectiveness.Fantasy wise, volume tends to be more predictable and valuable than efficiency. A different alternative explanation is that the simulated data intentionally contained high correlations, which may change the PCA’s clarity.</p>
 <section id="sec-strengthsLimitations" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="sec-strengthsLimitations"><span class="header-section-number">6.1</span> Strengths and Limitations</h2>
-<p>Some strengths of this include that the model explained roughly 78% of the variation in fantasy performance. It also directly aligns with fantasy scoring rules, making the findings immediately applicable to fantasy football strategies. Some limitations include the fact that the model does not include several key predictors of fantasy performance, such as air yards, receptions, offensive snaps, quarterback quality, or defensive match up difficulty. This also includes the fact that linear regression assumes that the relationship between predictors and fantasy points is linear, but in reality, performance can have nonlinear effects.</p>
+<p>Some strengths of this included that this helps identify undervalued players, as well as reducing all the metric into 2 easy to identify components. Some limitations of this include that principal components can be harder to interpret when loading are mixed, as well as results being able to change depending on which variables are included.</p>
 </section>
 <section id="sec-conclusion" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">6.2</span> Conclusion</h2>
-<p>In conclusion, This study shows that machine learning can meaningfully predict wide receiver fantasy football performance. Fantasy players should focus on players with consistent targets and yardage, as these are reliable indicators of future success.Future research could improve prediction accuracy by including additional variables like air yards, target depth, and team passing volume.</p>
+<p>In conclusion, PCA effectively reduced fantasy football performance metrics into two meaningful dimensions: player usage and player efficiency. Understanding these components can help fantasy managers identify sleeper candidates, interpret player roles, and prioritize reliable high-volume players.</p>
+</section>
+</section>
+<section id="sec-citation" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Citation</h1>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.2 (2025-10-31)
@@ -361,9 +421,9 @@ attached base packages:
 
 other attached packages:
  [1] nflreadr_1.5.0    lubridate_1.9.4   forcats_1.0.1     stringr_1.6.0    
- [5] dplyr_1.1.4       purrr_1.2.0       readr_2.1.5       tidyr_1.3.1      
+ [5] dplyr_1.1.4       purrr_1.2.0       readr_2.1.6       tidyr_1.3.1      
  [9] tibble_3.3.0      tidyverse_2.0.0   ggridges_0.5.7    GGally_2.4.0     
-[13] ggplot2_4.0.0     effectsize_1.0.1  correlation_0.8.8 DescTools_0.99.60
+[13] ggplot2_4.0.1     effectsize_1.0.1  correlation_0.8.8 DescTools_0.99.60
 [17] psych_2.5.6       XICOR_0.4.1       petersenlab_1.2.1
 
 loaded via a namespace (and not attached):
@@ -371,44 +431,43 @@ loaded via a namespace (and not attached):
   [4] gridExtra_2.3       gld_2.6.8           sandwich_3.1-1     
   [7] readxl_1.4.5        rlang_1.1.6         magrittr_2.0.4     
  [10] multcomp_1.4-29     e1071_1.7-16        compiler_4.5.2     
- [13] mgcv_1.9-3          vctrs_0.6.5         reshape2_1.4.5     
- [16] quadprog_1.5-8      pkgconfig_2.0.3     fastmap_1.2.0      
- [19] backports_1.5.0     labeling_0.4.3      pbivnorm_0.6.0     
- [22] rmarkdown_2.30      psychTools_2.5.7.22 tzdb_0.5.0         
- [25] haven_2.5.5         nloptr_2.2.1        xfun_0.54          
- [28] cachem_1.1.0        jsonlite_2.0.0      parallel_4.5.2     
- [31] lavaan_0.6-20       cluster_2.1.8.1     R6_2.6.1           
- [34] stringi_1.8.7       RColorBrewer_1.1-3  boot_1.3-32        
- [37] rpart_4.1.24        estimability_1.5.1  cellranger_1.1.0   
- [40] Rcpp_1.1.0          knitr_1.50          zoo_1.8-14         
- [43] parameters_0.28.2   base64enc_0.1-3     timechange_0.3.0   
- [46] Matrix_1.7-4        splines_4.5.2       nnet_7.3-20        
- [49] tidyselect_1.2.1    rstudioapi_0.17.1   yaml_2.3.10        
- [52] codetools_0.2-20    lattice_0.22-7      plyr_1.8.9         
- [55] withr_3.0.2         bayestestR_0.17.0   S7_0.2.0           
- [58] coda_0.19-4.1       evaluate_1.0.5      foreign_0.8-90     
- [61] survival_3.8-3      ggstats_0.11.0      proxy_0.4-27       
- [64] pillar_1.11.1       checkmate_2.3.3     rtf_0.4-14.1       
- [67] stats4_4.5.2        reformulas_0.4.2    insight_1.4.2      
- [70] generics_0.1.4      mix_1.0-13          hms_1.1.4          
- [73] scales_1.4.0        rootSolve_1.8.2.4   minqa_1.2.8        
- [76] xtable_1.8-4        class_7.3-23        glue_1.8.0         
- [79] emmeans_2.0.0       Hmisc_5.2-4         lmom_3.2           
- [82] tools_4.5.2         data.table_1.17.8   lme4_1.1-37        
- [85] Exact_3.3           fs_1.6.6            mvtnorm_1.3-3      
- [88] grid_4.5.2          mitools_2.4         rbibutils_2.4      
- [91] datawizard_1.3.0    colorspace_2.1-2    nlme_3.1-168       
- [94] htmlTable_2.4.3     Formula_1.2-5       cli_3.6.5          
- [97] expm_1.0-0          viridisLite_0.4.2   gtable_0.3.6       
-[100] R.methodsS3_1.8.2   digest_0.6.38       TH.data_1.1-4      
-[103] htmlwidgets_1.6.4   farver_2.1.2        memoise_2.0.1      
-[106] htmltools_0.5.8.1   R.oo_1.27.1         lifecycle_1.0.4    
-[109] httr_1.4.7          MASS_7.3-65        </code></pre>
+ [13] vctrs_0.6.5         reshape2_1.4.5      quadprog_1.5-8     
+ [16] pkgconfig_2.0.3     fastmap_1.2.0       backports_1.5.0    
+ [19] labeling_0.4.3      pbivnorm_0.6.0      rmarkdown_2.30     
+ [22] psychTools_2.5.7.22 tzdb_0.5.0          haven_2.5.5        
+ [25] nloptr_2.2.1        xfun_0.54           cachem_1.1.0       
+ [28] jsonlite_2.0.0      parallel_4.5.2      lavaan_0.6-20      
+ [31] cluster_2.1.8.1     R6_2.6.1            stringi_1.8.7      
+ [34] RColorBrewer_1.1-3  boot_1.3-32         rpart_4.1.24       
+ [37] estimability_1.5.1  cellranger_1.1.0    Rcpp_1.1.0         
+ [40] knitr_1.50          zoo_1.8-14          parameters_0.28.2  
+ [43] base64enc_0.1-3     timechange_0.3.0    Matrix_1.7-4       
+ [46] splines_4.5.2       nnet_7.3-20         tidyselect_1.2.1   
+ [49] rstudioapi_0.17.1   yaml_2.3.10         codetools_0.2-20   
+ [52] lattice_0.22-7      plyr_1.8.9          withr_3.0.2        
+ [55] bayestestR_0.17.0   S7_0.2.1            coda_0.19-4.1      
+ [58] evaluate_1.0.5      foreign_0.8-90      survival_3.8-3     
+ [61] ggstats_0.11.0      proxy_0.4-27        pillar_1.11.1      
+ [64] checkmate_2.3.3     rtf_0.4-14.1        stats4_4.5.2       
+ [67] reformulas_0.4.2    insight_1.4.2       generics_0.1.4     
+ [70] mix_1.0-13          hms_1.1.4           scales_1.4.0       
+ [73] rootSolve_1.8.2.4   minqa_1.2.8         xtable_1.8-4       
+ [76] class_7.3-23        glue_1.8.0          emmeans_2.0.0      
+ [79] Hmisc_5.2-4         lmom_3.2            tools_4.5.2        
+ [82] data.table_1.17.8   lme4_1.1-37         Exact_3.3          
+ [85] fs_1.6.6            mvtnorm_1.3-3       grid_4.5.2         
+ [88] mitools_2.4         rbibutils_2.4       datawizard_1.3.0   
+ [91] colorspace_2.1-2    nlme_3.1-168        htmlTable_2.4.3    
+ [94] Formula_1.2-5       cli_3.6.5           expm_1.0-0         
+ [97] viridisLite_0.4.2   gtable_0.3.6        R.methodsS3_1.8.2  
+[100] digest_0.6.39       TH.data_1.1-5       htmlwidgets_1.6.4  
+[103] farver_2.1.2        memoise_2.0.1       htmltools_0.5.8.1  
+[106] R.oo_1.27.1         lifecycle_1.0.4     httr_1.4.7         
+[109] MASS_7.3-65        </code></pre>
 </div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
