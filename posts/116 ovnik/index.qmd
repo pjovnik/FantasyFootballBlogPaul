@@ -113,7 +113,7 @@ In conclusion, PCA effectively reduced fantasy football performance metrics into
 
 # Citation {#sec-citation}
 
-
+https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook/pca.html
 
 
 ```{r}

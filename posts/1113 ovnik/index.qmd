@@ -1,5 +1,5 @@
 ---
-title: "Finding Running Back Archetypes via Cluster Analysis"
+title: "Indentifying Player Archetypes using PCA"
 author: "Paul Ovnik"
 date: "11/13/2025"
 categories: [abstract,aiDisclosure, background,  hypothesisandprediction, method, results, discussion,strengthslimitations, conclusion]
