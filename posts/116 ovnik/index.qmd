@@ -1,5 +1,5 @@
 ---
-title: "Predicting Wide Receiver Fantasy Points with Machine Learning"
+title: "Indentifying Player Archetypes using PCA"
 author: "Paul Ovnik"
 date: "11/20/2025"
 categories: [abstract,aiDisclosure, background,  hypothesisandprediction, method, results, discussion,strengthslimitations, conclusion, citation]
