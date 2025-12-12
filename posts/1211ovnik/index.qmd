@@ -1,0 +1,155 @@
+---
+title: "Cluster Analysis of NFL Wide Receivers using Machine Learning"
+author: "Paul Ovnik"
+date: "12/11/2025"
+categories: [abstract,aiDisclosure, background,  hypothesisandprediction, method, results, discussion,strengthslimitations, conclusion]
+---
+
+## Load Libraries {#sec-loadLibraries}
+
+```{r}
+#| message: false
+#| warning: false
+
+library("petersenlab") #located here: https://github.com/DevPsyLab/petersenlab
+library("petersenlab")
+library("XICOR")
+library("psych")
+library("DescTools")
+library("psych")
+library("correlation")
+library("effectsize")
+library("GGally")
+library("ggridges")
+library(tidyverse)
+library(nflreadr)
+library(ggplot2)
+
+getwd(
+  
+
+)
+
+```
+
+## AI Disclosure {#sec-aiDisclosure}
+
+AI Disclosure: AI was not used for this project.
+
+
+# Abstract {#sec-abstract}
+This week I decided to look into whether cluster analysis can help identify meaningful groups of wide receivers using real play-by-play data.My analysis focused on receptions, yards, touchdowns, and PPR fantasy points. Results suggest that wide receivers cluster into at least three general groups: high-volume elite receivers, mid-tier consistent players, and low-usage depth receivers. These findings from 2023 NFL data show how machine learning tools can support fantasy football decision-making by helping identify player archetypes.
+
+# Background {#sec-background}
+Fantasy players are always looking for ways to understand player performance and predict the future within their roster. With cluster analysis grouping players based on similarities,this can help managers spot breakouts or hidden value. According to the textbook, cluster analysis is useful because it “identifies natural groupings of players with similar characteristics”. Using this approach with real NFL data can help give managers an edge.
+
+# Hypothesis and prediction {#sec-hypothesisandprediction}
+My hypothesis is that wide receivers will naturally separate into at least three clusters that represent different performance types. I think that they will  be sorted into 1. elite wr1 2. Wr2/slot receivers and 3. deep threat/rotational players.
+## Justification {#sec-hypothesisandprediction}
+Fantasy research shows that WR production tends to fall into common patterns; some receivers earn high target volume, some rely mostly on touchdowns, and others receive very limited,sporatic usage. Machine learning should be able to detect these patterns automatically. Since cluster analysis is specifically designed to reveal hidden structures in data, I believe that clear clusters will form from the data.
+
+# Method {#sec-method}
+
+```{r}
+stats <- load_player_stats(seasons = 2023)
+
+message("Available columns (first 20):")
+print(colnames(stats)[1:min(20, ncol(stats))])
+
+wanted <- c("player_name", "position", "team", 
+            "receptions", "receiving_yards", "receiving_tds", "targets",
+            "receiving_air_yards", "yards_per_target")  # optional
+
+present <- intersect(wanted, colnames(stats))
+simple <- stats %>% select(any_of(present))
+
+if("position" %in% colnames(simple)) {
+  wrs <- simple %>% filter(position == "WR")
+} else {
+  wrs <- simple %>% filter(receptions > 0 | receiving_yards > 0)
+}
+
+num_cols <- c("receptions","receiving_yards","receiving_tds","targets","receiving_air_yards","yards_per_target")
+for(col in num_cols){
+  if(!(col %in% colnames(wrs))) wrs[[col]] <- NA_real_
+}
+
+wrs <- wrs %>%
+  mutate(
+    receptions = ifelse(is.na(receptions), 0, receptions),
+    receiving_yards = ifelse(is.na(receiving_yards), 0, receiving_yards),
+    receiving_tds = ifelse(is.na(receiving_tds), 0, receiving_tds),
+    targets = ifelse(is.na(targets), NA_real_, targets)
+  )
+
+wrs_simple <- wrs %>% filter(receptions >= 5)
+
+wrs_simple <- wrs_simple %>%
+  mutate(
+    fantasy_ppr_simple = receptions * 1 + receiving_yards * 0.1 + receiving_tds * 6
+  )
+
+wrs_simple <- wrs_simple %>%
+  mutate(ypr = ifelse(receptions > 0, receiving_yards / receptions, 0))
+
+cluster_df <- wrs_simple %>%
+  select(player_name, team, receptions, receiving_yards, ypr, targets, fantasy_ppr_simple)
+
+cluster_df$targets[is.na(cluster_df$targets)] <- 0
+
+numeric_matrix <- scale(cluster_df %>% select(receptions, receiving_yards, ypr, targets, fantasy_ppr_simple))
+set.seed(42)
+k3 <- kmeans(numeric_matrix, centers = 3, nstart = 25)
+cluster_df$cluster <- as.factor(k3$cluster)
+
+cluster_summary <- cluster_df %>%
+  group_by(cluster) %>%
+  summarize(
+    n = n(),
+    mean_receptions = mean(receptions),
+    mean_yards = mean(receiving_yards),
+    mean_ypr = mean(ypr),
+    mean_targets = mean(targets),
+    mean_fantasy = mean(fantasy_ppr_simple)
+  ) %>% arrange(desc(mean_fantasy))
+
+print(cluster_summary)
+
+ggplot(cluster_df, aes(x = targets, y = receiving_yards, color = cluster, label = player_name)) +
+  geom_point(size = 3, alpha = 0.8) +
+  labs(title = "WR clusters: Targets vs Receiving Yards",
+       x = "Targets", y = "Receiving Yards") +
+  theme_minimal()
+```
+
+# Results {#sec-results}
+The data returned 3 main wide receiver clusters:
+
+Cluster 1:Elite Volume Receivers, high receptions, high yardage, high PPR fantasy points.
+
+Cluster 2:Mid-Tier Starters, moderate receptions, moderate yards, occasional touchdowns, solid fantasy output.
+
+Cluster 3:Low-Usage Receivers: Few receptions, low yards, almost zero fantasy value. 
+
+These clusters align with fantasy expectations: the elite group clearly separated from mid-tier and low-usage players.
+
+# Discussion {#sec-discussion}
+The results show that cluster analysis can reveal real differences in WR usage and performance. The three clusters matched what fantasy managers already see: elite receivers, flex-tier players, and low-usage options. My hypothesis that clustering would identify at least three performance groups was correct.The clusters showed clear separation, and practically, they correspond to real fantasy football decision categories.
+
+However, alternative explanations exist. For example, some mid-tier receivers might appear lower in the data simply because of quarterback injuries or team scheme. A player’s offensive environment, not just their skill level, influences which cluster they fall into.
+
+## Strengths and Limitations {#sec-strengthsLimitations}
+Some strengths of this include that the model explained the three groups properly and clearly to see.  Machine learning provided a clear and unbiased grouping of all tiers of wide receivers. Visualization of the data also clearly shows separation as well. Some negatives include the fact that some middle tier receivers might appear lower in the data simply because of quarterback injuries or team scheme. A player’s offensive environment can also affect this as well, along with injuries of course as well.
+
+## Conclusion {#sec-conclusion}
+In conclusion, cluster analysis is a useful tool for exploring player performance patterns in fantasy football.While clustering is not a complete prediction model, it can help identify breakout candidates and understand player archetypes.
+
+
+## Citation {#sec-conclusion}
+https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook/cluster-analysis.html
+
+https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook/machine-learning.html
+
+```{r}
+sessionInfo()
+```
