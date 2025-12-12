@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Paul Ovnik">
-<meta name="dcterms.date" content="2025-10-30">
+<meta name="dcterms.date" content="2025-12-11">
 
-<title>Prediction Accuracy in Fantasy Football – My Blog</title>
+<title>Cluster Analysis of NFL Wide Receivers using Machine Learning – My Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -154,11 +154,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Prediction Accuracy in Fantasy Football</h1>
+      <h1 class="title">Cluster Analysis of NFL Wide Receivers using Machine Learning</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">abstract</div>
                 <div class="quarto-category">aiDisclosure</div>
                 <div class="quarto-category">background</div>
+                <div class="quarto-category">hypothesisandprediction</div>
                 <div class="quarto-category">method</div>
                 <div class="quarto-category">results</div>
                 <div class="quarto-category">discussion</div>
@@ -181,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 30, 2025</p>
+        <p class="date">December 11, 2025</p>
       </div>
     </div>
     
@@ -200,11 +201,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-loadLibraries" id="toc-sec-loadLibraries" class="nav-link active" data-scroll-target="#sec-loadLibraries"><span class="header-section-number">0.1</span> Load Libraries</a></li>
   <li><a href="#sec-aiDisclosure" id="toc-sec-aiDisclosure" class="nav-link" data-scroll-target="#sec-aiDisclosure"><span class="header-section-number">0.2</span> AI Disclosure</a></li>
   <li><a href="#sec-abstract" id="toc-sec-abstract" class="nav-link" data-scroll-target="#sec-abstract"><span class="header-section-number">1</span> Abstract</a></li>
-  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">2</span> Results</a></li>
-  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">3</span> Discussion</a>
+  <li><a href="#sec-background" id="toc-sec-background" class="nav-link" data-scroll-target="#sec-background"><span class="header-section-number">2</span> Background</a></li>
+  <li><a href="#sec-hypothesisandprediction" id="toc-sec-hypothesisandprediction" class="nav-link" data-scroll-target="#sec-hypothesisandprediction"><span class="header-section-number">3</span> Hypothesis and prediction</a></li>
+  <li><a href="#sec-method" id="toc-sec-method" class="nav-link" data-scroll-target="#sec-method"><span class="header-section-number">4</span> Method</a></li>
+  <li><a href="#sec-results" id="toc-sec-results" class="nav-link" data-scroll-target="#sec-results"><span class="header-section-number">5</span> Results</a></li>
+  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">6</span> Discussion</a>
   <ul class="collapse">
-  <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">3.1</span> Strengths and Limitations</a></li>
-  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">3.2</span> Conclusion</a></li>
+  <li><a href="#sec-strengthsLimitations" id="toc-sec-strengthsLimitations" class="nav-link" data-scroll-target="#sec-strengthsLimitations"><span class="header-section-number">6.1</span> Strengths and Limitations</a></li>
+  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">6.2</span> Conclusion</a></li>
+  <li><a href="#sec-conclusion" id="toc-sec-conclusion" class="nav-link" data-scroll-target="#sec-conclusion"><span class="header-section-number">6.3</span> Citation</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -231,18 +236,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"effectsize"</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"GGally"</span>)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggridges"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"nflreadr"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>(</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nflreadr)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>(</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/home/runner/work/FantasyFootballBlogPaul/FantasyFootballBlogPaul/posts/1030 ovnik"</code></pre>
+<pre><code>[1] "/home/runner/work/FantasyFootballBlogPaul/FantasyFootballBlogPaul/posts/1211ovnik"</code></pre>
 </div>
 </div>
 </section>
@@ -252,66 +256,118 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-abstract" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Abstract</h1>
-<p>For this post, I decided to take a look at how accurate fantasy player projections really are. I created a small example comparing projected vs.&nbsp;actual fantasy points for all five wide receivers on my fantasy roster this year during week 4. Using a simple plot and some real stats, I checked whether projections tended to overestimate performance. The results show that predictions were not particularly close and slightly too high — showing a bit of overconfidence in the forecasts. # Background {#sec-background} Fantasy players rely on projections every week to make decisions about who to start or sit. These projections estimate how many points a player will score, but sometimes they can be a little misleading. When predictions are too optimistic, it shows overconfidence — meaning the forecasts act like they’re more certain than they really are. Understanding this helps fantasy managers recognize when to trust the numbers and also when to use some personal judgement ## Hypothesis and prediction Are fantasy football projections accurate, or do they show signs of overconfidence? My hypothesis is that projections will be fairly accurate overall but will slightly over predict actual player performance. # Method {#sec-method}</p>
+<p>This week I decided to look into whether cluster analysis can help identify meaningful groups of wide receivers using real play-by-play data.My analysis focused on receptions, yards, touchdowns, and PPR fantasy points. Results suggest that wide receivers cluster into at least three general groups: high-volume elite receivers, mid-tier consistent players, and low-usage depth receivers. These findings from 2023 NFL data show how machine learning tools can support fantasy football decision-making by helping identify player archetypes.</p>
+</section>
+<section id="sec-background" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Background</h1>
+<p>Fantasy players are always looking for ways to understand player performance and predict the future within their roster. With cluster analysis grouping players based on similarities,this can help managers spot breakouts or hidden value. According to the textbook, cluster analysis is useful because it “identifies natural groupings of players with similar characteristics”. Using this approach with real NFL data can help give managers an edge.</p>
+</section>
+<section id="sec-hypothesisandprediction" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Hypothesis and prediction</h1>
+<p>My hypothesis is that wide receivers will naturally separate into at least three clusters that represent different performance types. I think that they will be sorted into 1. elite wr1 2. Wr2/slot receivers and 3. deep threat/rotational players. ## Justification {#sec-hypothesisandprediction} Fantasy research shows that WR production tends to fall into common patterns; some receivers earn high target volume, some rely mostly on touchdowns, and others receive very limited,sporatic usage. Machine learning should be able to detect these patterns automatically. Since cluster analysis is specifically designed to reveal hidden structures in data, I believe that clear clusters will form from the data.</p>
+</section>
+<section id="sec-method" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Method</h1>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>player <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Collins"</span>, <span class="st">"Wilson"</span>, <span class="st">"Chase"</span>, <span class="st">"SmithNjigba"</span>, <span class="st">"Waddle"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>predicted_points <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">18.1</span>, <span class="fl">16.6</span>, <span class="fl">14.7</span>, <span class="fl">20.9</span>, <span class="dv">12</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>actual_points <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.9</span>,<span class="fl">20.2</span>, <span class="fl">7.3</span>, <span class="dv">13</span>, <span class="fl">7.8</span>  )</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fantasy <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(player, predicted_points, actual_points)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>fantasy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stats <span class="ot">&lt;-</span> <span class="fu">load_player_stats</span>(<span class="at">seasons =</span> <span class="dv">2023</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"Available columns (first 20):"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["player"],"name":[1],"type":["chr"],"align":["left"]},{"label":["predicted_points"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["actual_points"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Collins","2":"18.1","3":"7.9"},{"1":"Wilson","2":"16.6","3":"20.2"},{"1":"Chase","2":"14.7","3":"7.3"},{"1":"SmithNjigba","2":"20.9","3":"13.0"},{"1":"Waddle","2":"12.0","3":"7.8"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Available columns (first 20):</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mean_pred <span class="ot">&lt;-</span> <span class="fu">mean</span>(fantasy<span class="sc">$</span>predicted_points)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mean_actual <span class="ot">&lt;-</span> <span class="fu">mean</span>(fantasy<span class="sc">$</span>actual_points)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>correlation <span class="ot">&lt;-</span> <span class="fu">cor</span>(fantasy<span class="sc">$</span>predicted_points, fantasy<span class="sc">$</span>actual_points)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>mean_pred; mean_actual; correlation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">colnames</span>(stats)[<span class="dv">1</span><span class="sc">:</span><span class="fu">min</span>(<span class="dv">20</span>, <span class="fu">ncol</span>(stats))])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 16.46</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 11.24</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3476882</code></pre>
+<pre><code> [1] "player_id"             "player_name"           "player_display_name"  
+ [4] "position"              "position_group"        "headshot_url"         
+ [7] "season"                "week"                  "season_type"          
+[10] "team"                  "opponent_team"         "completions"          
+[13] "attempts"              "passing_yards"         "passing_tds"          
+[16] "passing_interceptions" "sacks_suffered"        "sack_yards_lost"      
+[19] "sack_fumbles"          "sack_fumbles_lost"    </code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(fantasy, <span class="fu">aes</span>(<span class="at">x =</span> predicted_points, <span class="at">y =</span> actual_points, <span class="at">label =</span> player)) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.7</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Projected vs. Actual Points"</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Projected Points"</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Actual Points"</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>wanted <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"player_name"</span>, <span class="st">"position"</span>, <span class="st">"team"</span>, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">"receptions"</span>, <span class="st">"receiving_yards"</span>, <span class="st">"receiving_tds"</span>, <span class="st">"targets"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">"receiving_air_yards"</span>, <span class="st">"yards_per_target"</span>)  <span class="co"># optional</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>present <span class="ot">&lt;-</span> <span class="fu">intersect</span>(wanted, <span class="fu">colnames</span>(stats))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>simple <span class="ot">&lt;-</span> stats <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">any_of</span>(present))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="st">"position"</span> <span class="sc">%in%</span> <span class="fu">colnames</span>(simple)) {</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  wrs <span class="ot">&lt;-</span> simple <span class="sc">%&gt;%</span> <span class="fu">filter</span>(position <span class="sc">==</span> <span class="st">"WR"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  wrs <span class="ot">&lt;-</span> simple <span class="sc">%&gt;%</span> <span class="fu">filter</span>(receptions <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">|</span> receiving_yards <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>num_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"receptions"</span>,<span class="st">"receiving_yards"</span>,<span class="st">"receiving_tds"</span>,<span class="st">"targets"</span>,<span class="st">"receiving_air_yards"</span>,<span class="st">"yards_per_target"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(col <span class="cf">in</span> num_cols){</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span>(col <span class="sc">%in%</span> <span class="fu">colnames</span>(wrs))) wrs[[col]] <span class="ot">&lt;-</span> <span class="cn">NA_real_</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>wrs <span class="ot">&lt;-</span> wrs <span class="sc">%&gt;%</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">receptions =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(receptions), <span class="dv">0</span>, receptions),</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">receiving_yards =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(receiving_yards), <span class="dv">0</span>, receiving_yards),</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">receiving_tds =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(receiving_tds), <span class="dv">0</span>, receiving_tds),</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">targets =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(targets), <span class="cn">NA_real_</span>, targets)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>wrs_simple <span class="ot">&lt;-</span> wrs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(receptions <span class="sc">&gt;=</span> <span class="dv">5</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>wrs_simple <span class="ot">&lt;-</span> wrs_simple <span class="sc">%&gt;%</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">fantasy_ppr_simple =</span> receptions <span class="sc">*</span> <span class="dv">1</span> <span class="sc">+</span> receiving_yards <span class="sc">*</span> <span class="fl">0.1</span> <span class="sc">+</span> receiving_tds <span class="sc">*</span> <span class="dv">6</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>wrs_simple <span class="ot">&lt;-</span> wrs_simple <span class="sc">%&gt;%</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ypr =</span> <span class="fu">ifelse</span>(receptions <span class="sc">&gt;</span> <span class="dv">0</span>, receiving_yards <span class="sc">/</span> receptions, <span class="dv">0</span>))</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>cluster_df <span class="ot">&lt;-</span> wrs_simple <span class="sc">%&gt;%</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(player_name, team, receptions, receiving_yards, ypr, targets, fantasy_ppr_simple)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>cluster_df<span class="sc">$</span>targets[<span class="fu">is.na</span>(cluster_df<span class="sc">$</span>targets)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>numeric_matrix <span class="ot">&lt;-</span> <span class="fu">scale</span>(cluster_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(receptions, receiving_yards, ypr, targets, fantasy_ppr_simple))</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>k3 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(numeric_matrix, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>cluster_df<span class="sc">$</span>cluster <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(k3<span class="sc">$</span>cluster)</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>cluster_summary <span class="ot">&lt;-</span> cluster_df <span class="sc">%&gt;%</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cluster) <span class="sc">%&gt;%</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_receptions =</span> <span class="fu">mean</span>(receptions),</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_yards =</span> <span class="fu">mean</span>(receiving_yards),</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_ypr =</span> <span class="fu">mean</span>(ypr),</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_targets =</span> <span class="fu">mean</span>(targets),</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_fantasy =</span> <span class="fu">mean</span>(fantasy_ppr_simple)</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_fantasy))</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cluster_summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 7
+  cluster     n mean_receptions mean_yards mean_ypr mean_targets mean_fantasy
+  &lt;fct&gt;   &lt;int&gt;           &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+1 2          81           10.1       126.      12.5        13.7          27.0
+2 1         123            6.50      122.      19.1         8.52         23.6
+3 3         331            5.98       60.2     10.2         8.68         13.9</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The following aesthetics were dropped during statistical transformation: label.
-ℹ This can happen when ggplot fails to infer the correct grouping structure in
-  the data.
-ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-  variable into a factor?</code></pre>
-</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cluster_df, <span class="fu">aes</span>(<span class="at">x =</span> targets, <span class="at">y =</span> receiving_yards, <span class="at">color =</span> cluster, <span class="at">label =</span> player_name)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"WR clusters: Targets vs Receiving Yards"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Targets"</span>, <span class="at">y =</span> <span class="st">"Receiving Yards"</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -321,25 +377,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="sec-results" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Results</h1>
-<p>The average predicted score was 16.46 points, and the average actual score was 11.24 points, meaning the projections were about 5 points too high on average.</p>
-<p>The correlation between predicted and actual points was 0.66, showing that the projections were not strongly related to real results, showing that experts and analysts were slightly too optimistic. a majority of the points fell below the dashed line in the graph, which means projections overestimated actual outcomes.</p>
+<section id="sec-results" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Results</h1>
+<p>The data returned 3 main wide receiver clusters:</p>
+<p>Cluster 1:Elite Volume Receivers, high receptions, high yardage, high PPR fantasy points.</p>
+<p>Cluster 2:Mid-Tier Starters, moderate receptions, moderate yards, occasional touchdowns, solid fantasy output.</p>
+<p>Cluster 3:Low-Usage Receivers: Few receptions, low yards, almost zero fantasy value.</p>
+<p>These clusters align with fantasy expectations: the elite group clearly separated from mid-tier and low-usage players.</p>
 </section>
-<section id="sec-discussion" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Discussion</h1>
-<p>The results somewhat supported the hypothesis: projections were not totally accurate, and showed overconfidence by predicting higher scores than what players actually achieved.In fantasy this happens a decent amount, because models often assume players will perform at their average or best, ignoring bad match ups,weather, or important injuries. It shows why fantasy managers shouldn’t rely on projections alone when making lineup choices.</p>
-<section id="sec-strengthsLimitations" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="sec-strengthsLimitations"><span class="header-section-number">3.1</span> Strengths and Limitations</h2>
-<p>Some strengths of this experiment was that the hypothesis was somewhat supported and that the data and correlation matched up correctly. Some negatives include that this was a smaller sample size, only wide receivers, and that projections can’t always predict weather conditions, important injuries, or match ups 100% of the time correctly.</p>
+<section id="sec-discussion" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Discussion</h1>
+<p>The results show that cluster analysis can reveal real differences in WR usage and performance. The three clusters matched what fantasy managers already see: elite receivers, flex-tier players, and low-usage options. My hypothesis that clustering would identify at least three performance groups was correct.The clusters showed clear separation, and practically, they correspond to real fantasy football decision categories.</p>
+<p>However, alternative explanations exist. For example, some mid-tier receivers might appear lower in the data simply because of quarterback injuries or team scheme. A player’s offensive environment, not just their skill level, influences which cluster they fall into.</p>
+<section id="sec-strengthsLimitations" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="sec-strengthsLimitations"><span class="header-section-number">6.1</span> Strengths and Limitations</h2>
+<p>Some strengths of this include that the model explained the three groups properly and clearly to see. Machine learning provided a clear and unbiased grouping of all tiers of wide receivers. Visualization of the data also clearly shows separation as well. Some negatives include the fact that some middle tier receivers might appear lower in the data simply because of quarterback injuries or team scheme. A player’s offensive environment can also affect this as well, along with injuries of course as well.</p>
 </section>
-<section id="sec-conclusion" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">3.2</span> Conclusion</h2>
-<p>In conclusion, fantasy projections are usually close but a little too confident. While they’re helpful for making decisions, players should remember that football is unpredictable,and that numbers don’t tell the whole story. It is always best to use your own personal judgement along with projections given out by experts and fantasy services.</p>
+<section id="sec-conclusion" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">6.2</span> Conclusion</h2>
+<p>In conclusion, cluster analysis is a useful tool for exploring player performance patterns in fantasy football.While clustering is not a complete prediction model, it can help identify breakout candidates and understand player archetypes.</p>
+</section>
+<section id="sec-conclusion" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="sec-conclusion"><span class="header-section-number">6.3</span> Citation</h2>
+<p>https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook/cluster-analysis.html</p>
+<p>https://isaactpetersen.github.io/Fantasy-Football-Analytics-Textbook/machine-learning.html</p>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.5.2 (2025-10-31)
@@ -374,9 +439,9 @@ loaded via a namespace (and not attached):
   [4] gridExtra_2.3       gld_2.6.8           sandwich_3.1-1     
   [7] readxl_1.4.5        rlang_1.1.6         magrittr_2.0.4     
  [10] multcomp_1.4-29     e1071_1.7-16        compiler_4.5.2     
- [13] mgcv_1.9-3          vctrs_0.6.5         reshape2_1.4.5     
- [16] quadprog_1.5-8      pkgconfig_2.0.3     fastmap_1.2.0      
- [19] backports_1.5.0     labeling_0.4.3      pbivnorm_0.6.0     
+ [13] vctrs_0.6.5         reshape2_1.4.5      quadprog_1.5-8     
+ [16] pkgconfig_2.0.3     fastmap_1.2.0       backports_1.5.0    
+ [19] labeling_0.4.3      utf8_1.2.6          pbivnorm_0.6.0     
  [22] rmarkdown_2.30      psychTools_2.5.7.22 tzdb_0.5.0         
  [25] haven_2.5.5         nloptr_2.2.1        xfun_0.54          
  [28] cachem_1.1.0        jsonlite_2.0.0      parallel_4.5.2     
